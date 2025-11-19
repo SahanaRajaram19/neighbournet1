@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Management - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Admin Styles */
+        .admin-header {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .admin-nav {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-nav .nav-item {
+            display: inline-block;
+            margin-right: 2rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .admin-nav .nav-item:hover,
+        .admin-nav .nav-item.active {
+            background: #096C6C;
+            color: white;
+        }
+
+        .admin-nav .nav-item i {
+            margin-right: 0.5rem;
+        }
+
+        .admin-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .admin-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #096C6C;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+        }
+
+        .btn-admin {
+            background: #096C6C;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-admin:hover {
+            background: #074d4d;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .item-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .item-table th,
+        .item-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .item-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 0.75rem;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-details h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .item-details p {
+            margin: 0.25rem 0 0 0;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-booked {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-unavailable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .category-badge {
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .price-highlight {
+            font-weight: 600;
+            color: #096C6C;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border: none;
+            background: none;
+            color: #666;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: #f8f9fa;
+        }
+
+        .btn-icon.edit:hover {
+            color: #ffc107;
+        }
+
+        .btn-icon.approve:hover {
+            color: #28a745;
+        }
+
+        .btn-icon.reject:hover {
+            color: #dc3545;
+        }
+
+        .btn-icon.delete:hover {
+            color: #dc3545;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e1e5e9;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover,
+        .pagination-btn.active {
+            background: #096C6C;
+            color: white;
+            border-color: #096C6C;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stats-card h3 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stats-card p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .admin-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .item-table {
+                font-size: 0.9rem;
+            }
+
+            .item-table th,
+            .item-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="margin: 0; font-size: 2rem;"><i class="fas fa-box"></i> Item Management</h1>
+                    <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Manage platform items and listings</p>
+                </div>
+                <div style="text-align: right;">
+                    <a href="admin.html" style="color: white; text-decoration: none; font-size: 0.9rem;">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Navigation -->
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="admin.html" class="nav-item">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
+            </a>
+            <a href="admin-users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                Users
+            </a>
+            <a href="admin-items.html" class="nav-item active">
+                <i class="fas fa-box"></i>
+                Items
+            </a>
+            <a href="admin-transactions.html" class="nav-item">
+                <i class="fas fa-exchange-alt"></i>
+                Transactions
+            </a>
+            <a href="admin-support.html" class="nav-item">
+                <i class="fas fa-headset"></i>
+                Support
+            </a>
+            <a href="admin-reports.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                Reports
+            </a>
+            <a href="admin-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                Settings
+            </a>
+        </nav>
+    </div>
+
+    <!-- Item Statistics -->
+        <!-- Item Statistics -->
+        <div class="stats-cards">
+            <div class="stats-card">
+                <h3 id="total-items">0</h3>
+                <p>Total Items</p>
+            </div>
+            <div class="stats-card">
+                <h3 id="available-items">0</h3>
+                <p>Available Items</p>
+            </div>
+            <div class="stats-card">
+                <h3 id="booked-items">0</h3>
+                <p>Booked Items</p>
+            </div>
+            <div class="stats-card">
+                <h3 id="unavailable-items">0</h3>
+                <p>Unavailable Items</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Management -->
+    <div class="container">
+        <div class="admin-container">
+            <!-- Controls -->
+            <div class="admin-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search items by title, description, or location..." id="itemSearch">
+                </div>
+                <select class="filter-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="tools">Tools</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="books">Books</option>
+                    <option value="sports">Sports</option>
+                    <option value="other">Other</option>
+                </select>
+                <select class="filter-select" id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="available">Available</option>
+                    <option value="booked">Booked</option>
+                    <option value="unavailable">Unavailable</option>
+                </select>
+                <select class="filter-select" id="conditionFilter">
+                    <option value="">All Conditions</option>
+                    <option value="excellent">Excellent</option>
+                    <option value="good">Good</option>
+                    <option value="fair">Fair</option>
+                </select>
+                <button class="btn-admin">
+                    <i class="fas fa-plus"></i>
+                    Add New Item
+                </button>
+            </div>
+
+            <!-- Items Table -->
+            <div class="table-responsive">
+                <table class="item-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Owner</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Condition</th>
+                            <th>Bookings</th>
+                            <th>Date Added</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="item-info">
+                                    <img src="https://via.placeholder.com/60x60/096C6C/ffffff?text=Drill" alt="Power Drill" class="item-image">
+                                    <div class="item-details">
+                                        <h4>Professional Power Drill</h4>
+                                        <p>Bosch Professional Series</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Sarah Miller</strong>
+                                    <p>ID: #12346</p>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="category-badge">Tools</span>
+                            </td>
+                            <td>
+                                <div class="price-highlight">
+                                    ₹50 <span style="font-size: 0.8em; color: #666;">/ day</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-available">Available</span>
+                            </td>
+                            <td>
+                                <span class="status-badge status-available">Excellent</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p><strong>12</strong> Total</p>
+                                    <p><strong>4.8★</strong> Rating</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 10, 2024</p>
+                                    <small>5 days ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon edit" title="Edit Item">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon approve" title="Approve Item">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="btn-icon delete" title="Delete Item">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="item-info">
+                                    <img src="https://via.placeholder.com/60x60/FF6F61/ffffff?text=Camera" alt="DSLR Camera" class="item-image">
+                                    <div class="item-details">
+                                        <h4>Canon DSLR Camera Kit</h4>
+                                        <p>Professional photography equipment</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Mike Roberts</strong>
+                                    <p>ID: #12347</p>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="category-badge">Electronics</span>
+                            </td>
+                            <td>
+                                <div class="price-highlight">
+                                    ₹200 <span style="font-size: 0.8em; color: #666;">/ day</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-booked">Booked</span>
+                            </td>
+                            <td>
+                                <span class="status-badge status-available">Excellent</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p><strong>8</strong> Total</p>
+                                    <p><strong>4.9★</strong> Rating</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 8, 2024</p>
+                                    <small>7 days ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon edit" title="Edit Item">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon reject" title="Mark Unavailable">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <button class="btn-icon delete" title="Delete Item">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="item-info">
+                                    <img src="https://via.placeholder.com/60x60/FFA500/ffffff?text=Guitar" alt="Acoustic Guitar" class="item-image">
+                                    <div class="item-details">
+                                        <h4>Yamaha Acoustic Guitar</h4>
+                                        <p>Perfect for beginners and practice</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Mike Roberts</strong>
+                                    <p>ID: #12347</p>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="category-badge">Other</span>
+                            </td>
+                            <td>
+                                <div class="price-highlight">
+                                    ₹25 <span style="font-size: 0.8em; color: #666;">/ day</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-available">Available</span>
+                            </td>
+                            <td>
+                                <span class="status-badge status-available">Good</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p><strong>5</strong> Total</p>
+                                    <p><strong>4.6★</strong> Rating</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 5, 2024</p>
+                                    <small>10 days ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon edit" title="Edit Item">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon approve" title="Approve Item">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="btn-icon delete" title="Delete Item">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="pagination-btn">Previous</a>
+                <a href="#" class="pagination-btn active">1</a>
+                <a href="#" class="pagination-btn">2</a>
+                <a href="#" class="pagination-btn">3</a>
+                <a href="#" class="pagination-btn">Next</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Item Modal -->
+    <div id="addItemModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:white; padding:2rem; border-radius:12px; width:90%; max-width:500px; box-shadow:0 10px 40px rgba(0,0,0,0.2);">
+            <h2 style="color:#096C6C; margin-bottom:1.5rem;">Add New Item</h2>
+            <form id="addItemForm">
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Title *</label>
+                    <input type="text" id="itemTitle" required style="width:100%; padding:0.75rem; border:2px solid #e1e5e9; border-radius:8px; font-size:1rem;">
+                </div>
+
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Description</label>
+                    <textarea id="itemDescription" style="width:100%; padding:0.75rem; border:2px solid #e1e5e9; border-radius:8px; font-size:1rem; min-height:80px; resize:vertical;"></textarea>
+                </div>
+
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Category *</label>
+                    <select id="itemCategory" required style="width:100%; padding:0.75rem; border:2px solid #e1e5e9; border-radius:8px; font-size:1rem;">
+                        <option value="">Select Category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Tools">Tools</option>
+                        <option value="Books">Books</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Price *</label>
+                    <input type="number" id="itemPrice" step="0.01" required style="width:100%; padding:0.75rem; border:2px solid #e1e5e9; border-radius:8px; font-size:1rem;">
+                </div>
+
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Condition *</label>
+                    <select id="itemCondition" required style="width:100%; padding:0.75rem; border:2px solid #e1e5e9; border-radius:8px; font-size:1rem;">
+                        <option value="">Select Condition</option>
+                        <option value="excellent">Excellent</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                        <option value="poor">Poor</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom:1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Item Image</label>
+                    <div style="border:2px dashed #e1e5e9; border-radius:8px; padding:1rem; text-align:center; cursor:pointer;" id="imageDropZone">
+                        <i class="fas fa-cloud-upload-alt" style="font-size:2rem; color:#096C6C; margin-bottom:0.5rem; display:block;"></i>
+                        <p style="margin:0; color:#666;">Click to upload or drag image here</p>
+                        <p style="margin:0.25rem 0 0 0; font-size:0.8rem; color:#999;">JPG, PNG, GIF (Max 5MB)</p>
+                        <input type="file" id="itemImage" accept="image/*" style="display:none;">
+                    </div>
+                    <div id="imagePreview" style="margin-top:1rem; text-align:center; display:none;">
+                        <img id="previewImg" style="max-width:100%; max-height:200px; border-radius:8px;">
+                        <p style="margin:0.5rem 0 0 0; font-size:0.9rem; color:#666;" id="fileName"></p>
+                    </div>
+                </div>
+
+                <div style="margin-bottom:1.5rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:600;">Status *</label>
+                    <select id="itemStatus" required style="width:100%; padding:0.75rem; border:2px solid #e1e5e9; border-radius:8px; font-size:1rem;">
+                        <option value="available">Available</option>
+                        <option value="booked">Booked</option>
+                        <option value="unavailable">Unavailable</option>
+                    </select>
+                </div>
+
+                <div style="display:flex; gap:1rem; justify-content:flex-end;">
+                    <button type="button" onclick="closeAddItemModal()" style="padding:0.75rem 1.5rem; border:2px solid #e1e5e9; background:white; border-radius:8px; cursor:pointer; font-weight:600;">Cancel</button>
+                    <button type="submit" style="padding:0.75rem 1.5rem; background:#096C6C; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:600;">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Item Management JavaScript - Connected to SQLite Backend
+        let allItems = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadItems();
+            loadStats();
+            
+            const searchInput = document.getElementById('itemSearch');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const conditionFilter = document.getElementById('conditionFilter');
+            const addItemForm = document.getElementById('addItemForm');
+
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                filterDisplay();
+            });
+
+            // Filter functionality
+            categoryFilter.addEventListener('change', filterDisplay);
+            statusFilter.addEventListener('change', filterDisplay);
+            conditionFilter.addEventListener('change', filterDisplay);
+
+            // Form submission
+            addItemForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleAddItem();
+            });
+
+            // Add button click
+            document.querySelector('.btn-admin').addEventListener('click', openAddItemModal);
+        });
+
+        function loadStats() {
+            fetch('database-viewer.php?table=items')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const items = data.data;
+                        const total = items.length;
+                        const available = items.filter(i => i.status === 'available').length;
+                        const booked = items.filter(i => i.status === 'booked').length;
+                        const unavailable = items.filter(i => i.status === 'unavailable').length;
+                        
+                        document.getElementById('total-items').textContent = total;
+                        document.getElementById('available-items').textContent = available;
+                        document.getElementById('booked-items').textContent = booked;
+                        document.getElementById('unavailable-items').textContent = unavailable;
+                    }
+                });
+        }
+
+        function loadItems() {
+            fetch('fetch-items.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        allItems = data.items;
+                        displayItems(allItems);
+                    }
+                })
+                .catch(err => console.log('Error loading items:', err));
+        }
+
+        function displayItems(items) {
+            const tbody = document.querySelector('.item-table tbody');
+            tbody.innerHTML = '';
+
+            items.forEach(item => {
+                const row = document.createElement('tr');
+                const imageUrl = item.image_url || 'https://via.placeholder.com/60x60/096C6C/ffffff?text=' + item.category.charAt(0);
+                
+                row.innerHTML = `
+                    <td>
+                        <div class="item-info">
+                            <img src="${imageUrl}" alt="${item.title}" class="item-image" style="width:60px; height:60px; border-radius:8px; object-fit:cover;">
+                            <div class="item-details">
+                                <h4>${item.title}</h4>
+                                <p>${item.description || 'No description'}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="category-badge">${item.category}</span>
+                    </td>
+                    <td>
+                        <div>
+                            <p><strong>₹${item.price}</strong></p>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="status-badge status-${item.status}">${item.status}</span>
+                    </td>
+                    <td>
+                        <span class="status-badge status-${item.condition}">${item.condition}</span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon edit" data-id="${item.id}" title="Edit Item">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon approve" data-id="${item.id}" title="Approve Item">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="btn-icon delete" data-id="${item.id}" title="Delete Item">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+
+            // Attach event listeners
+            document.querySelectorAll('.btn-icon.delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this item?')) {
+                        deleteItem(id);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.btn-icon.edit').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    editItem(id);
+                });
+            });
+
+            document.querySelectorAll('.btn-icon.approve').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    approveItem(id);
+                });
+            });
+        }
+
+        function deleteItem(id) {
+            fetch(`delete-item.php?id=${id}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Item deleted successfully');
+                        loadItems();
+                    } else {
+                        alert('Error: ' + data.error);
+                    }
+                })
+                .catch(err => alert('Error: ' + err));
+        }
+
+        function editItem(id) {
+            alert('Edit functionality coming soon');
+        }
+
+        function approveItem(id) {
+            alert('Approve functionality coming soon');
+        }
+
+        function openAddItemModal() {
+            document.getElementById('addItemModal').style.display = 'flex';
+            document.getElementById('addItemForm').reset();
+        }
+
+        function closeAddItemModal() {
+            document.getElementById('addItemModal').style.display = 'none';
+            document.getElementById('addItemForm').reset();
+        }
+
+        function handleAddItem() {
+            const title = document.getElementById('itemTitle').value;
+            const description = document.getElementById('itemDescription').value;
+            const category = document.getElementById('itemCategory').value;
+            const price = document.getElementById('itemPrice').value;
+            const condition = document.getElementById('itemCondition').value;
+            const status = document.getElementById('itemStatus').value;
+            const imageFile = document.getElementById('itemImage').files[0];
+
+            // Upload image first if provided
+            if (imageFile) {
+                const formData = new FormData();
+                formData.append('image', imageFile);
+
+                fetch('upload-image.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        addItemToDatabase(title, description, category, price, condition, status, data.url);
+                    } else {
+                        alert('Image upload failed: ' + data.error);
+                    }
+                })
+                .catch(err => alert('Error uploading image: ' + err));
+            } else {
+                addItemToDatabase(title, description, category, price, condition, status, '');
+            }
+        }
+
+        function addItemToDatabase(title, description, category, price, condition, status, imageUrl) {
+            const formData = {
+                title: title,
+                description: description,
+                category: category,
+                price: price,
+                condition: condition,
+                status: status,
+                image_url: imageUrl
+            };
+
+            fetch('add-item.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Item added successfully!');
+                    closeAddItemModal();
+                    loadItems();
+                    loadStats();
+                } else {
+                    alert('Error: ' + (data.error || 'Failed to add item'));
+                }
+            })
+            .catch(err => alert('Error: ' + err));
+        }
+
+        function filterDisplay() {
+            const searchInput = document.getElementById('itemSearch');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const conditionFilter = document.getElementById('conditionFilter');
+
+            const searchTerm = searchInput.value.toLowerCase();
+            const category = categoryFilter.value;
+            const status = statusFilter.value;
+            const condition = conditionFilter.value;
+
+            const filtered = allItems.filter(item => {
+                return (
+                    (item.title.toLowerCase().includes(searchTerm) || item.description.toLowerCase().includes(searchTerm)) &&
+                    (category === '' || item.category === category) &&
+                    (status === '' || item.status === status) &&
+                    (condition === '' || item.condition === condition)
+                );
+            });
+
+            displayItems(filtered);
+        }
+
+        // Image upload handling
+        const imageDropZone = document.getElementById('imageDropZone');
+        const itemImage = document.getElementById('itemImage');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const fileName = document.getElementById('fileName');
+
+        imageDropZone.addEventListener('click', () => itemImage.click());
+
+        imageDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            imageDropZone.style.borderColor = '#096C6C';
+            imageDropZone.style.backgroundColor = '#f0f9f9';
+        });
+
+        imageDropZone.addEventListener('dragleave', () => {
+            imageDropZone.style.borderColor = '#e1e5e9';
+            imageDropZone.style.backgroundColor = 'transparent';
+        });
+
+        imageDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            imageDropZone.style.borderColor = '#e1e5e9';
+            imageDropZone.style.backgroundColor = 'transparent';
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                itemImage.files = files;
+                showImagePreview(files[0]);
+            }
+        });
+
+        itemImage.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                showImagePreview(e.target.files[0]);
+            }
+        });
+
+        function showImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImg.src = e.target.result;
+                fileName.textContent = file.name;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust & Verification - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-link">Safety & Trust</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Trust & Verification</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-container">
+                <div class="trust-header">
+                    <h1>Trust & Verification</h1>
+                    <p>Building trust through comprehensive verification and community-driven safety measures.</p>
+                </div>
+
+                <div class="trust-content">
+                    <!-- Verification Process -->
+                    <div class="trust-card">
+                        <h3><i class="fas fa-shield-alt"></i> Our Verification Process</h3>
+                        <div class="verification-steps">
+                            <div class="verification-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Identity Verification</h4>
+                                    <p>Users must provide government-issued ID and phone number verification</p>
+                                </div>
+                            </div>
+                            <div class="verification-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Address Confirmation</h4>
+                                    <p>Address verification through utility bills or other official documents</p>
+                                </div>
+                            </div>
+                            <div class="verification-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Community Building</h4>
+                                    <p>Users build trust through successful transactions and positive reviews</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="trust-card">
+                        <h3><i class="fas fa-check-circle"></i> Trust Badges</h3>
+                        <div class="badges-grid">
+                            <div class="badge-item">
+                                <div class="badge-icon verified">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <h4>Verified User</h4>
+                                    <p>Completed identity and address verification</p>
+                                </div>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon trusted">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <h4>Trusted Member</h4>
+                                    <p>High rating with 10+ successful transactions</p>
+                                </div>
+                            </div>
+                            <div class="badge-item">
+                                <div class="badge-icon premium">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <div class="badge-info">
+                                    <h4>Premium Provider</h4>
+                                    <p>Professional service provider with insurance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rating System -->
+                    <div class="trust-card">
+                        <h3><i class="fas fa-star"></i> Rating & Review System</h3>
+                        <div class="rating-explanation">
+                            <div class="rating-scale">
+                                <div class="rating-item">
+                                    <span class="rating-number">5★</span>
+                                    <span class="rating-label">Excellent</span>
+                                    <p>Perfect condition, excellent communication</p>
+                                </div>
+                                <div class="rating-item">
+                                    <span class="rating-number">4★</span>
+                                    <span class="rating-label">Good</span>
+                                    <p>Good condition, smooth transaction</p>
+                                </div>
+                                <div class="rating-item">
+                                    <span class="rating-number">3★</span>
+                                    <span class="rating-label">Average</span>
+                                    <p>Acceptable condition, minor issues</p>
+                                </div>
+                                <div class="rating-item">
+                                    <span class="rating-number">2★</span>
+                                    <span class="rating-label">Below Average</span>
+                                    <p>Item not as described, communication issues</p>
+                                </div>
+                                <div class="rating-item">
+                                    <span class="rating-number">1★</span>
+                                    <span class="rating-label">Poor</span>
+                                    <p>Major issues, safety concerns</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Insurance Coverage -->
+                    <div class="trust-card">
+                        <h3><i class="fas fa-umbrella"></i> Insurance & Protection</h3>
+                        <div class="insurance-info">
+                            <div class="insurance-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <h4>Item Protection</h4>
+                                    <p>Items valued over ₹5,000 are covered by our insurance policy</p>
+                                </div>
+                            </div>
+                            <div class="insurance-item">
+                                <i class="fas fa-user-shield"></i>
+                                <div>
+                                    <h4>Liability Coverage</h4>
+                                    <p>Platform provides liability protection for verified users</p>
+                                </div>
+                            </div>
+                            <div class="insurance-item">
+                                <i class="fas fa-gavel"></i>
+                                <div>
+                                    <h4>Dispute Resolution</h4>
+                                    <p>Free mediation service for transaction disputes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Community Standards -->
+                    <div class="trust-card">
+                        <h3><i class="fas fa-users"></i> Community Standards</h3>
+                        <div class="standards-grid">
+                            <div class="standard-item">
+                                <i class="fas fa-handshake"></i>
+                                <h4>Respectful Communication</h4>
+                                <p>All users must communicate respectfully and professionally</p>
+                            </div>
+                            <div class="standard-item">
+                                <i class="fas fa-clock"></i>
+                                <h4>Timely Responses</h4>
+                                <p>Respond to messages and honor commitments promptly</p>
+                            </div>
+                            <div class="standard-item">
+                                <i class="fas fa-balance-scale"></i>
+                                <h4>Fair Transactions</h4>
+                                <p>Deal honestly and fairly in all transactions</p>
+                            </div>
+                            <div class="standard-item">
+                                <i class="fas fa-flag"></i>
+                                <h4>Report Violations</h4>
+                                <p>Report any violations of community standards immediately</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verification for Businesses -->
+                    <div class="trust-card business-card">
+                        <h3><i class="fas fa-building"></i> Business Verification</h3>
+                        <p>For users offering professional services or renting multiple items:</p>
+                        <div class="business-benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-certificate"></i>
+                                <span>Business License Verification</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Professional Insurance</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Enhanced Listing Features</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-trophy"></i>
+                                <span>Premium Badge Display</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Trust Team -->
+                    <div class="trust-card contact-card">
+                        <h3><i class="fas fa-envelope"></i> Contact Our Trust Team</h3>
+                        <p>Questions about verification or trust issues? We're here to help:</p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email:</strong> trust@neighbournet.com
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>Phone:</strong> +1 (555) 123-4567
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Hours:</strong> Monday - Friday, 9 AM - 6 PM IST
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <a href="safety.html" class="hamburger-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Safety Guidelines</span>
+                </a>
+                <a href="trust.html" class="hamburger-item">
+                    <i class="fas fa-user-check"></i>
+                    <span>Trust & Verification</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>

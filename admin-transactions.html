@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Management - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Admin Styles */
+        .admin-header {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .admin-nav {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-nav .nav-item {
+            display: inline-block;
+            margin-right: 2rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .admin-nav .nav-item:hover,
+        .admin-nav .nav-item.active {
+            background: #096C6C;
+            color: white;
+        }
+
+        .admin-nav .nav-item i {
+            margin-right: 0.5rem;
+        }
+
+        .admin-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .admin-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #096C6C;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+        }
+
+        .btn-admin {
+            background: #096C6C;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-admin:hover {
+            background: #074d4d;
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .transaction-table th,
+        .transaction-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .transaction-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .transaction-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .transaction-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            color: #096C6C;
+        }
+
+        .transaction-details h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .transaction-details p {
+            margin: 0.25rem 0 0 0;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-confirmed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-in_progress {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .amount-highlight {
+            font-weight: 600;
+            color: #096C6C;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border: none;
+            background: none;
+            color: #666;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: #f8f9fa;
+        }
+
+        .btn-icon.approve:hover {
+            color: #28a745;
+        }
+
+        .btn-icon.view:hover {
+            color: #007bff;
+        }
+
+        .btn-icon.cancel:hover {
+            color: #dc3545;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e1e5e9;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover,
+        .pagination-btn.active {
+            background: #096C6C;
+            color: white;
+            border-color: #096C6C;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stats-card h3 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stats-card p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .admin-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .transaction-table {
+                font-size: 0.9rem;
+            }
+
+            .transaction-table th,
+            .transaction-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="margin: 0; font-size: 2rem;"><i class="fas fa-exchange-alt"></i> Transaction Management</h1>
+                    <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Manage bookings, payments, and disputes</p>
+                </div>
+                <div style="text-align: right;">
+                    <a href="admin.html" style="color: white; text-decoration: none; font-size: 0.9rem;">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Navigation -->
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="admin.html" class="nav-item">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
+            </a>
+            <a href="admin-users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                Users
+            </a>
+            <a href="admin-items.html" class="nav-item">
+                <i class="fas fa-box"></i>
+                Items
+            </a>
+            <a href="admin-transactions.html" class="nav-item active">
+                <i class="fas fa-exchange-alt"></i>
+                Transactions
+            </a>
+            <a href="admin-support.html" class="nav-item">
+                <i class="fas fa-headset"></i>
+                Support
+            </a>
+            <a href="admin-reports.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                Reports
+            </a>
+            <a href="admin-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                Settings
+            </a>
+        </nav>
+    </div>
+
+    <!-- Transaction Statistics -->
+    <div class="container">
+        <div class="stats-cards">
+            <div class="stats-card">
+                <h3>234</h3>
+                <p>Total Transactions</p>
+            </div>
+            <div class="stats-card">
+                <h3>₹12,450</h3>
+                <p>Total Revenue</p>
+            </div>
+            <div class="stats-card">
+                <h3>89</h3>
+                <p>Pending Approval</p>
+            </div>
+            <div class="stats-card">
+                <h3>15</h3>
+                <p>Disputes</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Management -->
+    <div class="container">
+        <div class="admin-container">
+            <!-- Controls -->
+            <div class="admin-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search transactions by ID, item, or user..." id="transactionSearch">
+                </div>
+                <select class="filter-select" id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+                <select class="filter-select" id="dateFilter">
+                    <option value="">All Dates</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+                <button class="btn-admin">
+                    <i class="fas fa-download"></i>
+                    Export Data
+                </button>
+            </div>
+
+            <!-- Transactions Table -->
+            <div class="table-responsive">
+                <table class="transaction-table">
+                    <thead>
+                        <tr>
+                            <th>Transaction</th>
+                            <th>Item</th>
+                            <th>Borrower</th>
+                            <th>Owner</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Dates</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="transaction-info">
+                                    <div class="transaction-icon">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="transaction-details">
+                                        <h4>#TXN-20241215001</h4>
+                                        <p>Booking Request</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Professional Power Drill</strong>
+                                    <p>ID: #ITEM-001</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>John Doe</strong>
+                                    <p>ID: #12345</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Sarah Miller</strong>
+                                    <p>ID: #12346</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-highlight">
+                                    ₹150 <span style="font-size: 0.8em; color: #666;">(3 days)</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-pending">Pending</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p><strong>From:</strong> Dec 15, 2024</p>
+                                    <p><strong>To:</strong> Dec 17, 2024</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon approve" title="Approve Transaction">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="btn-icon view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon cancel" title="Cancel Transaction">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="transaction-info">
+                                    <div class="transaction-icon">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                    <div class="transaction-details">
+                                        <h4>#TXN-20241214002</h4>
+                                        <p>Photography Equipment</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Canon DSLR Camera Kit</strong>
+                                    <p>ID: #ITEM-003</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>John Doe</strong>
+                                    <p>ID: #12345</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Mike Roberts</strong>
+                                    <p>ID: #12347</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-highlight">
+                                    ₹600 <span style="font-size: 0.8em; color: #666;">(3 days)</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-confirmed">Confirmed</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p><strong>From:</strong> Dec 14, 2024</p>
+                                    <p><strong>To:</strong> Dec 16, 2024</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon cancel" title="Cancel Transaction">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="transaction-info">
+                                    <div class="transaction-icon">
+                                        <i class="fas fa-guitar"></i>
+                                    </div>
+                                    <div class="transaction-details">
+                                        <h4>#TXN-20241212003</h4>
+                                        <p>Music Instrument</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Yamaha Acoustic Guitar</strong>
+                                    <p>ID: #ITEM-004</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Sarah Miller</strong>
+                                    <p>ID: #12346</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Mike Roberts</strong>
+                                    <p>ID: #12347</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="amount-highlight">
+                                    ₹75 <span style="font-size: 0.8em; color: #666;">(3 days)</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-completed">Completed</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p><strong>From:</strong> Dec 12, 2024</p>
+                                    <p><strong>To:</strong> Dec 14, 2024</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon view" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="pagination-btn">Previous</a>
+                <a href="#" class="pagination-btn active">1</a>
+                <a href="#" class="pagination-btn">2</a>
+                <a href="#" class="pagination-btn">3</a>
+                <a href="#" class="pagination-btn">Next</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Transaction Management JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('transactionSearch');
+            const statusFilter = document.getElementById('statusFilter');
+            const dateFilter = document.getElementById('dateFilter');
+
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filterTransactions(searchTerm, statusFilter.value, dateFilter.value);
+            });
+
+            // Filter functionality
+            statusFilter.addEventListener('change', function() {
+                filterTransactions(searchInput.value.toLowerCase(), this.value, dateFilter.value);
+            });
+
+            dateFilter.addEventListener('change', function() {
+                filterTransactions(searchInput.value.toLowerCase(), statusFilter.value, this.value);
+            });
+
+            // Action button handlers
+            document.querySelectorAll('.btn-icon.approve').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const txnId = this.closest('tr').querySelector('.transaction-details h4').textContent;
+                    alert('Approve transaction: ' + txnId);
+                    // Implement approve transaction functionality
+                });
+            });
+
+            document.querySelectorAll('.btn-icon.view').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const txnId = this.closest('tr').querySelector('.transaction-details h4').textContent;
+                    alert('View transaction details: ' + txnId);
+                    // Implement view transaction details functionality
+                });
+            });
+
+            document.querySelectorAll('.btn-icon.cancel').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const txnId = this.closest('tr').querySelector('.transaction-details h4').textContent;
+                    if (confirm(`Are you sure you want to cancel transaction: ${txnId}?`)) {
+                        alert('Cancel transaction: ' + txnId);
+                        // Implement cancel transaction functionality
+                    }
+                });
+            });
+        });
+
+        function filterTransactions(searchTerm, statusFilter, dateFilter) {
+            const rows = document.querySelectorAll('.transaction-table tbody tr');
+
+            rows.forEach(row => {
+                const txnId = row.querySelector('.transaction-details h4').textContent.toLowerCase();
+                const itemName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                const borrower = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                const owner = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+                const status = row.querySelector('.status-badge').textContent.toLowerCase();
+
+                const shouldShow =
+                    (txnId.includes(searchTerm) || itemName.includes(searchTerm) ||
+                     borrower.includes(searchTerm) || owner.includes(searchTerm)) &&
+                    (statusFilter === '' || status.includes(statusFilter));
+
+                row.style.display = shouldShow ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

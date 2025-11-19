@@ -1,0 +1,28 @@
+{
+  "name": "item-management-dashboard",
+  "version": "1.0.0",
+  "description": "A dashboard for managing items in a platform.",
+  "main": "backend/app.js",
+  "scripts": {
+    "start": "node backend/app.js",
+    "dev": "nodemon backend/app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9",
+    "dotenv": "^8.2.0",
+    "cors": "^2.8.5",
+    "body-parser": "^1.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "keywords": [
+    "item",
+    "management",
+    "dashboard",
+    "admin"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

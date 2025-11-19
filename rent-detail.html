@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Item Details - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+{{ ... }}
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="rent.html" class="breadcrumb-link">Rent Items</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Honda City Car Rental</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Details Section -->
+    <section class="item-details-section">
+        <div class="container">
+            <div class="item-details-layout">
+                <!-- Image Gallery -->
+                <div class="item-gallery">
+                    <div class="main-image">
+                        <img src="https://via.placeholder.com/600x400/096C6C/ffffff?text=Honda+City+Main" alt="Honda City Car" id="mainImage">
+                        <div class="image-overlay">
+                            <button class="btn btn-coral btn-small gallery-btn" onclick="openImageGallery()">
+                                <i class="fas fa-expand"></i>
+                                View Gallery
+                            </button>
+                        </div>
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Car+View+1" alt="View 1" class="thumbnail active" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Car+View+2" alt="View 2" class="thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Car+View+3" alt="View 3" class="thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Car+View+4" alt="View 4" class="thumbnail" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+
+                <!-- Item Information -->
+                <div class="item-info">
+                    <div class="item-header">
+                        <h1 class="item-title">Honda City Car Rental</h1>
+                        <div class="item-status available">
+                            <i class="fas fa-check-circle"></i>
+                            Available for Rent
+                        </div>
+                    </div>
+
+                    <div class="item-meta">
+                        <div class="item-price">
+                            <span class="price-amount">₹800</span>
+                            <span class="price-period">/ day</span>
+                        </div>
+                        <div class="item-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-count">(18 reviews)</span>
+                        </div>
+                        <div class="item-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>3.2 km from your location</span>
+                        </div>
+                    </div>
+
+                    <div class="item-description">
+                        <h3>Description</h3>
+                        <p>Well-maintained Honda City sedan, perfect for city driving and short trips. This reliable car features excellent fuel efficiency, comfortable seating for 5 passengers, and modern safety features. Ideal for business trips, family outings, or daily commuting.</p>
+
+                        <div class="item-features">
+                            <h4>Vehicle Features:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Model: Honda City VX (2022)</li>
+                                <li><i class="fas fa-check"></i> Fuel: Petrol, Manual Transmission</li>
+                                <li><i class="fas fa-check"></i> Seating: 5 passengers</li>
+                                <li><i class="fas fa-check"></i> Air conditioning & power windows</li>
+                                <li><i class="fas fa-check"></i> Bluetooth connectivity</li>
+                                <li><i class="fas fa-check"></i> Comprehensive insurance included</li>
+                                <li><i class="fas fa-check"></i> GPS navigation system</li>
+                            </ul>
+                        </div>
+
+                        <div class="rental-requirements">
+                            <h4>Rental Requirements:</h4>
+                            <ul>
+                                <li><i class="fas fa-id-card"></i> Valid driver's license (minimum 2 years)</li>
+                                <li><i class="fas fa-credit-card"></i> Security deposit: ₹5,000</li>
+                                <li><i class="fas fa-file-alt"></i> Age: 21-65 years</li>
+                                <li><i class="fas fa-shield-alt"></i> Clean driving record required</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Availability Calendar -->
+                    <div class="availability-section">
+                        <h3>Availability</h3>
+                        <div class="availability-status">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Available from <strong>Today</strong> until <strong>Dec 20, 2024</strong></span>
+                        </div>
+                        <div class="availability-calendar">
+                            <div class="calendar-legend">
+                                <span class="available-date">Available</span>
+                                <span class="booked-date">Booked</span>
+                                <span class="unavailable-date">Unavailable</span>
+                            </div>
+                            <div class="calendar-grid">
+                                <!-- Sample calendar days -->
+                                <div class="calendar-day available" data-date="2024-12-01">1</div>
+                                <div class="calendar-day available" data-date="2024-12-02">2</div>
+                                <div class="calendar-day booked" data-date="2024-12-03">3</div>
+                                <div class="calendar-day available" data-date="2024-12-04">4</div>
+                                <div class="calendar-day available" data-date="2024-12-05">5</div>
+                                <div class="calendar-day available" data-date="2024-12-06">6</div>
+                                <div class="calendar-day available" data-date="2024-12-07">7</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Owner Information -->
+                    <div class="owner-section">
+                        <h3>Vehicle Owner</h3>
+                        <div class="owner-card">
+                            <div class="owner-avatar">
+                                <img src="https://via.placeholder.com/60x60/FF6F61/ffffff?text=RS" alt="Raj Singh">
+                            </div>
+                            <div class="owner-details">
+                                <h4>Raj Singh</h4>
+                                <div class="owner-stats">
+                                    <span class="owner-rating">
+                                        <i class="fas fa-star"></i>
+                                        4.8 (89 reviews)
+                                    </span>
+                                    <span class="owner-join-date">
+                                        <i class="fas fa-calendar"></i>
+                                        Member since 2021
+                                    </span>
+                                </div>
+                                <p class="owner-bio">Experienced car rental provider with a fleet of well-maintained vehicles. All cars are regularly serviced and insured.</p>
+                                <div class="owner-verification">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified Vehicle Owner</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="item-actions">
+                        <div class="quantity-selector">
+                            <label>Duration (days):</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                                <input type="number" value="1" min="1" max="14" class="quantity-input" id="rentalDuration">
+                                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="total-price">
+                            <span>Total: ₹<span id="totalPrice">800</span></span>
+                        </div>
+
+                        <button class="btn btn-coral btn-large" onclick="initiateBooking()">
+                            <i class="fas fa-car"></i>
+                            Book Vehicle
+                        </button>
+
+                        <button class="btn btn-outline btn-large chat-btn">
+                            <i class="fas fa-comments"></i>
+                            Chat with Owner
+                        </button>
+                    </div>
+
+                    <!-- Safety & Policies -->
+                    <div class="policies-section">
+                        <h3>Rental Policies</h3>
+                        <div class="policy-grid">
+                            <div class="policy-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <h4>Insurance Coverage</h4>
+                                    <p>Comprehensive insurance included in rental price.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <div>
+                                    <h4>Fuel Policy</h4>
+                                    <p>Vehicle provided with full tank, return with full tank.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-map"></i>
+                                <div>
+                                    <h4>Usage Area</h4>
+                                    <p>Within city limits only. Highway usage requires approval.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Late Returns</h4>
+                                    <p>Late returns charged at hourly rates beyond agreed time.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Complete Your Vehicle Booking</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="booking-summary">
+                    <h4>Booking Summary</h4>
+                    <div class="summary-item">
+                        <span>Vehicle:</span>
+                        <span>Honda City Car Rental</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Duration:</span>
+                        <span id="summaryDuration">1 day(s)</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Security Deposit:</span>
+                        <span>₹5,000</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Rental Cost:</span>
+                        <span id="summaryTotal">₹800</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total Amount:</span>
+                        <span>₹5,800</span>
+                    </div>
+                </div>
+
+                <!-- Document Upload for Booking -->
+                <div class="upload-section">
+                    <h4>Upload Required Documents</h4>
+                    <p>Please upload clear photos of your driver's license and ID proof (under 100MB each)</p>
+
+                    <div class="document-uploads">
+                        <div class="upload-item">
+                            <label>Driver's License:</label>
+                            <div class="upload-area" onclick="document.getElementById('licenseUpload').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Upload driver's license</p>
+                                <input type="file" id="licenseUpload" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div class="upload-item">
+                            <label>ID Proof (Aadhaar/Passport):</label>
+                            <div class="upload-area" onclick="document.getElementById('idUpload').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Upload ID proof</p>
+                                <input type="file" id="idUpload" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="terms-section">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="termsCheck" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#" target="_blank">Vehicle Rental Terms</a> and <a href="#" target="_blank">Insurance Policy</a>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeBookingModal()">Cancel</button>
+                <button class="btn btn-coral" onclick="confirmBooking()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Gallery Modal -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-content gallery-modal-content">
+            <div class="modal-header">
+                <h3>Vehicle Gallery</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="gallery-container">
+                    <img src="https://via.placeholder.com/800x600/096C6C/ffffff?text=Honda+City+Gallery" alt="Gallery Image" class="gallery-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="rent.html">Browse Rentals</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>

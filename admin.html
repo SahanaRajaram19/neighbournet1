@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Admin Dashboard Styles */
+        .admin-header {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .admin-nav {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-nav .nav-item {
+            display: inline-block;
+            margin-right: 2rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .admin-nav .nav-item:hover,
+        .admin-nav .nav-item.active {
+            background: #096C6C;
+            color: white;
+        }
+
+        .admin-nav .nav-item i {
+            margin-right: 0.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #096C6C;
+        }
+
+        .stat-card .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card.income .stat-icon { color: #28a745; }
+        .stat-card.users .stat-icon { color: #007bff; }
+        .stat-card.items .stat-icon { color: #ffc107; }
+        .stat-card.transactions .stat-icon { color: #dc3545; }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .recent-activity,
+        .quick-actions {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 0.75rem;
+            color: #096C6C;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: #096C6C;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .action-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            background: #096C6C;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .action-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background: linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
+                        linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
+                        linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-nav .nav-item {
+                display: block;
+                margin-bottom: 0.5rem;
+                margin-right: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="margin: 0; font-size: 2rem;"><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+                    <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Manage your NeighbourNet platform</p>
+                </div>
+                <div style="text-align: right;">
+                    <p style="margin: 0; opacity: 0.9;">Welcome back, Admin</p>
+                    <a href="index.html" style="color: white; text-decoration: none; font-size: 0.9rem;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Navigation -->
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="admin.html" class="nav-item active">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
+            </a>
+            <a href="admin-users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                Users
+            </a>
+            <a href="admin-items.html" class="nav-item">
+                <i class="fas fa-box"></i>
+                Items
+            </a>
+            <a href="admin-transactions.html" class="nav-item">
+                <i class="fas fa-exchange-alt"></i>
+                Transactions
+            </a>
+            <a href="admin-support.html" class="nav-item">
+                <i class="fas fa-headset"></i>
+                Support
+            </a>
+            <a href="admin-reports.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                Reports
+            </a>
+            <a href="admin-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                Settings
+            </a>
+        </nav>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card users">
+                <i class="fas fa-users stat-icon"></i>
+                <div class="stat-number" id="stat-users">0</div>
+                <div class="stat-label">Total Users</div>
+            </div>
+            <div class="stat-card items">
+                <i class="fas fa-box stat-icon"></i>
+                <div class="stat-number" id="stat-items">0</div>
+                <div class="stat-label">Total Items</div>
+            </div>
+            <div class="stat-card transactions">
+                <i class="fas fa-exchange-alt stat-icon"></i>
+                <div class="stat-number" id="stat-bookings">0</div>
+                <div class="stat-label">Total Bookings</div>
+            </div>
+            <div class="stat-card income">
+                <i class="fas fa-headset stat-icon"></i>
+                <div class="stat-number" id="stat-tickets">0</div>
+                <div class="stat-label">Support Tickets</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="container">
+        <div class="dashboard-grid">
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h2 class="section-title">
+                    <i class="fas fa-clock"></i>
+                    Recent Activity
+                </h2>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">New user registered: john.doe@example.com</div>
+                        <div class="activity-time">2 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">New booking: Professional Power Drill</div>
+                        <div class="activity-time">15 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">New review received: 5 stars for Camera Lens</div>
+                        <div class="activity-time">1 hour ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">New item listed: Yamaha Acoustic Guitar</div>
+                        <div class="activity-time">2 hours ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Support ticket: Item not returned on time</div>
+                        <div class="activity-time">3 hours ago</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2 class="section-title">
+                    <i class="fas fa-bolt"></i>
+                    Quick Actions
+                </h2>
+                <div class="action-grid">
+                    <a href="admin-users.html" class="action-card">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add New User</span>
+                    </a>
+                    <a href="admin-items.html" class="action-card">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add New Item</span>
+                    </a>
+                    <a href="admin-transactions.html" class="action-card">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Approve Bookings</span>
+                    </a>
+                    <a href="admin-support.html" class="action-card">
+                        <i class="fas fa-reply"></i>
+                        <span>Respond to Support</span>
+                    </a>
+                    <a href="admin-reports.html" class="action-card">
+                        <i class="fas fa-chart-line"></i>
+                        <span>View Reports</span>
+                    </a>
+                    <a href="admin-settings.html" class="action-card">
+                        <i class="fas fa-cog"></i>
+                        <span>System Settings</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="container">
+        <div class="chart-container">
+            <h2 class="section-title">
+                <i class="fas fa-chart-bar"></i>
+                Platform Analytics
+            </h2>
+            <div class="chart-placeholder">
+                <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <p>Interactive charts and analytics will be displayed here</p>
+                <p>Revenue trends, user growth, popular categories, and more...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Admin dashboard specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add active state to current nav item
+            const currentPath = window.location.pathname;
+            const navItems = document.querySelectorAll('.admin-nav .nav-item');
+
+            navItems.forEach(item => {
+                if (item.getAttribute('href') === currentPath.split('/').pop()) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Fetch real-time stats from API
+            fetchStats();
+
+            // Auto-refresh stats every 30 seconds
+            setInterval(fetchStats, 30000);
+        });
+
+        function fetchStats() {
+            fetch('database-viewer.php?table=all')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('stat-users').textContent = data.summary.total_users;
+                        document.getElementById('stat-items').textContent = data.summary.total_items;
+                        document.getElementById('stat-bookings').textContent = data.summary.total_bookings;
+                        document.getElementById('stat-tickets').textContent = data.summary.total_support_tickets;
+                    }
+                })
+                .catch(err => console.log('Error fetching stats:', err));
+        }
+
+        function updateStats(data) {
+            // Update stat cards with real data
+            document.querySelector('.stat-card.income .stat-number').textContent = '₹' + data.totalRevenue;
+            document.querySelector('.stat-card.users .stat-number').textContent = data.totalUsers;
+            document.querySelector('.stat-card.items .stat-number').textContent = data.activeItems;
+            document.querySelector('.stat-card.transactions .stat-number').textContent = data.pendingTransactions;
+        }
+    </script>
+</body>
+</html>

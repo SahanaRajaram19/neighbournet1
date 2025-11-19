@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-link">Account</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Terms & Conditions</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Section -->
+    <section class="terms-section">
+        <div class="container">
+            <div class="terms-container">
+                <div class="terms-header">
+                    <h1>Terms & Conditions</h1>
+                    <p class="last-updated">Last updated: December 2024</p>
+                </div>
+
+                <div class="terms-content">
+                    <div class="terms-card">
+                        <h3><i class="fas fa-user-check"></i> Acceptance of Terms</h3>
+                        <p>By accessing and using NeighbourNet, you accept and agree to be bound by the terms and provision of this agreement. These terms apply to all visitors, users, and others who access or use the service.</p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3><i class="fas fa-handshake"></i> User Responsibilities</h3>
+                        <ul>
+                            <li>Provide accurate and truthful information during registration</li>
+                            <li>Maintain the confidentiality of your account credentials</li>
+                            <li>Use the platform only for lawful purposes</li>
+                            <li>Respect the rights and property of other users</li>
+                            <li>Report any suspicious or inappropriate activity</li>
+                            <li>Keep your profile information up to date</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3><i class="fas fa-exchange-alt"></i> Borrowing & Lending Terms</h3>
+                        <h4>For Borrowers:</h4>
+                        <ul>
+                            <li>Return items in the same condition as received</li>
+                            <li>Pay the agreed rental fee on time</li>
+                            <li>Report any damage or issues immediately</li>
+                            <li>Respect the lender's specified usage terms</li>
+                        </ul>
+                        <h4>For Lenders:</h4>
+                        <ul>
+                            <li>Provide items in good working condition</li>
+                            <li>Clearly describe item condition and features</li>
+                            <li>Be available for communication during rental period</li>
+                            <li>Handle disputes fairly and professionally</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3><i class="fas fa-rupee-sign"></i> Payment Terms</h3>
+                        <ul>
+                            <li>All transactions are processed securely through our platform</li>
+                            <li>Lenders receive payment after successful rental completion</li>
+                            <li>Security deposits are held until item return and inspection</li>
+                            <li>Refunds are processed within 3-5 business days</li>
+                            <li>Disputes are resolved through our mediation process</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3><i class="fas fa-shield-alt"></i> Safety & Security</h3>
+                        <ul>
+                            <li>All users must complete identity verification</li>
+                            <li>Meet in public places for item exchange when possible</li>
+                            <li>Document item condition before and after rental</li>
+                            <li>Report safety concerns immediately</li>
+                            <li>Platform provides insurance for high-value items</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3><i class="fas fa-ban"></i> Prohibited Activities</h3>
+                        <ul>
+                            <li>Sharing illegal, dangerous, or inappropriate items</li>
+                            <li>Harassment or inappropriate communication</li>
+                            <li>Providing false information or fake reviews</li>
+                            <li>Attempting to circumvent platform fees</li>
+                            <li>Using the platform for commercial purposes without approval</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3><i class="fas fa-gavel"></i> Dispute Resolution</h3>
+                        <ul>
+                            <li>Contact the other party directly first</li>
+                            <li>Use our in-platform messaging for documentation</li>
+                            <li>Report unresolved issues to our support team</li>
+                            <li>We mediate disputes fairly and impartially</li>
+                            <li>Platform decisions are final in mediated disputes</li>
+                        </ul>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3><i class="fas fa-user-times"></i> Account Termination</h3>
+                        <p>We reserve the right to terminate or suspend accounts that violate our terms, engage in fraudulent activity, or compromise platform safety. Users may appeal terminations through our support system.</p>
+                    </div>
+
+                    <div class="terms-card">
+                        <h3><i class="fas fa-edit"></i> Terms Modification</h3>
+                        <p>We may update these terms periodically. Users will be notified of significant changes via email or platform notifications. Continued use of the platform constitutes acceptance of updated terms.</p>
+                    </div>
+
+                    <div class="terms-card contact-card">
+                        <h3><i class="fas fa-envelope"></i> Contact Us</h3>
+                        <p>If you have questions about these terms, please contact us:</p>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> legal@neighbournet.com</p>
+                            <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                            <p><i class="fas fa-map-marker-alt"></i> 123 Community Street, Your City, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <a href="safety.html" class="hamburger-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Safety Guidelines</span>
+                </a>
+                <a href="trust.html" class="hamburger-item">
+                    <i class="fas fa-user-check"></i>
+                    <span>Trust & Verification</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>

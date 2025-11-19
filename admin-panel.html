@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - NeighbourNet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #764ba2;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #667eea;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .error-message {
+            background: #ef4444;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>NeighbourNet Admin Panel</h1>
+        <p>Manage Items & Dashboard</p>
+    </div>
+    
+    <div class="container">
+        <div class="success-message" id="successMsg"></div>
+        <div class="error-message" id="errorMsg"></div>
+        
+        <!-- Dashboard Stats -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <h3>Total Items</h3>
+                <div class="stat-value" id="totalItems">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Available</h3>
+                <div class="stat-value" id="availableItems">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Booked</h3>
+                <div class="stat-value" id="bookedItems">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Unavailable</h3>
+                <div class="stat-value" id="unavailableItems">0</div>
+            </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search items...">
+            </div>
+            <button class="btn" id="addItemBtn">+ Add Item</button>
+        </div>
+        
+        <!-- Items Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Condition</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="itemsTable">
+                <tr>
+                    <td colspan="7" style="text-align: center; color: #999;">Loading items...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Add/Edit Item Modal -->
+    <div class="modal" id="itemModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Item</h2>
+                <button class="close-btn" onclick="closeItemModal()">&times;</button>
+            </div>
+            
+            <form id="itemForm">
+                <div class="form-group">
+                    <label>Title *</label>
+                    <input type="text" id="itemTitle" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="itemDescription"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Category *</label>
+                    <select id="itemCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Tools">Tools</option>
+                        <option value="Books">Books</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Price *</label>
+                    <input type="number" id="itemPrice" step="0.01" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Condition *</label>
+                    <select id="itemCondition" required>
+                        <option value="">Select Condition</option>
+                        <option value="excellent">Excellent</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                        <option value="poor">Poor</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Status *</label>
+                    <select id="itemStatus" required>
+                        <option value="available">Available</option>
+                        <option value="booked">Booked</option>
+                        <option value="unavailable">Unavailable</option>
+                    </select>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="btn" onclick="closeItemModal()">Cancel</button>
+                    <button type="submit" class="btn">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        let currentEditId = null;
+        
+        // Load items on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadItems();
+            
+            // Add event listeners
+            document.getElementById('addItemBtn').addEventListener('click', openAddItemModal);
+            document.getElementById('itemForm').addEventListener('submit', handleItemFormSubmit);
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                loadItems(e.target.value);
+            });
+        });
+        
+        function loadItems(search = '') {
+            const url = search ? `fetch-items.php?search=${encodeURIComponent(search)}` : 'fetch-items.php';
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayItems(data.items);
+                        updateStats(data.items);
+                    } else {
+                        showError('Failed to load items: ' + data.error);
+                    }
+                })
+                .catch(error => showError('Error loading items: ' + error.message));
+        }
+        
+        function displayItems(items) {
+            const tbody = document.getElementById('itemsTable');
+            
+            if (items.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #999;">No items found</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = items.map(item => `
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.title}</td>
+                    <td>${item.category}</td>
+                    <td>$${parseFloat(item.price).toFixed(2)}</td>
+                    <td>${item.status}</td>
+                    <td>${item.condition}</td>
+                    <td>
+                        <button class="btn" onclick="openEditItemModal(${item.id}, '${item.title}', '${item.description}', '${item.category}', ${item.price}, '${item.condition}', '${item.status}')">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteItem(${item.id})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function updateStats(items) {
+            const total = items.length;
+            const available = items.filter(i => i.status === 'available').length;
+            const booked = items.filter(i => i.status === 'booked').length;
+            const unavailable = items.filter(i => i.status === 'unavailable').length;
+            
+            document.getElementById('totalItems').textContent = total;
+            document.getElementById('availableItems').textContent = available;
+            document.getElementById('bookedItems').textContent = booked;
+            document.getElementById('unavailableItems').textContent = unavailable;
+        }
+        
+        function openAddItemModal() {
+            currentEditId = null;
+            document.getElementById('modalTitle').textContent = 'Add New Item';
+            document.getElementById('itemForm').reset();
+            document.getElementById('itemModal').classList.add('active');
+        }
+        
+        function openEditItemModal(id, title, description, category, price, condition, status) {
+            currentEditId = id;
+            document.getElementById('modalTitle').textContent = 'Edit Item';
+            document.getElementById('itemTitle').value = title;
+            document.getElementById('itemDescription').value = description;
+            document.getElementById('itemCategory').value = category;
+            document.getElementById('itemPrice').value = price;
+            document.getElementById('itemCondition').value = condition;
+            document.getElementById('itemStatus').value = status;
+            document.getElementById('itemModal').classList.add('active');
+        }
+        
+        function closeItemModal() {
+            document.getElementById('itemModal').classList.remove('active');
+            currentEditId = null;
+        }
+        
+        function handleItemFormSubmit(e) {
+            e.preventDefault();
+            
+            const item = {
+                title: document.getElementById('itemTitle').value,
+                description: document.getElementById('itemDescription').value,
+                category: document.getElementById('itemCategory').value,
+                price: parseFloat(document.getElementById('itemPrice').value),
+                condition: document.getElementById('itemCondition').value,
+                status: document.getElementById('itemStatus').value,
+                owner_id: 1, // Default to user 1 for now
+                owner_name: 'Admin'
+            };
+            
+            const url = currentEditId ? `update-item.php?id=${currentEditId}` : 'add-item.php';
+            const method = currentEditId ? 'POST' : 'POST';
+            
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showSuccess(currentEditId ? 'Item updated successfully!' : 'Item added successfully!');
+                    closeItemModal();
+                    loadItems();
+                } else {
+                    showError('Failed to save item: ' + data.error);
+                }
+            })
+            .catch(error => showError('Error saving item: ' + error.message));
+        }
+        
+        function deleteItem(id) {
+            if (!confirm('Are you sure you want to delete this item?')) return;
+            
+            fetch(`delete-item.php?id=${id}`, {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showSuccess('Item deleted successfully!');
+                    loadItems();
+                } else {
+                    showError('Failed to delete item: ' + data.error);
+                }
+            })
+            .catch(error => showError('Error deleting item: ' + error.message));
+        }
+        
+        function showSuccess(msg) {
+            const msgEl = document.getElementById('successMsg');
+            msgEl.textContent = msg;
+            msgEl.style.display = 'block';
+            setTimeout(() => msgEl.style.display = 'none', 3000);
+        }
+        
+        function showError(msg) {
+            const msgEl = document.getElementById('errorMsg');
+            msgEl.textContent = msg;
+            msgEl.style.display = 'block';
+            setTimeout(() => msgEl.style.display = 'none', 3000);
+        }
+    </script>
+</body>
+</html>

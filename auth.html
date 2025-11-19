@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Auth Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-content">
+                <div class="auth-header">
+                    <h2 id="auth-title">Welcome Back</h2>
+                    <p id="auth-subtitle">Sign in to your NeighbourNet account</p>
+                </div>
+
+                <!-- Progress Steps (for signup) -->
+                <div class="auth-steps" id="auth-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Account</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Verification</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Complete</span>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <form class="auth-form" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" name="email" required>
+                        <i class="fas fa-envelope form-icon"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="login-password" name="password" required>
+                            <button type="button" class="password-toggle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <i class="fas fa-lock form-icon"></i>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password-link" data-form="forgot">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-coral btn-full">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+
+                    <button type="button" class="btn btn-outline btn-full social-btn">
+                        <i class="fab fa-google"></i>
+                        Continue with Google
+                    </button>
+
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="#" data-form="signup">Sign up here</a></p>
+                    </div>
+                </form>
+
+                <!-- Signup Form -->
+                <form class="auth-form hidden" id="signup-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" name="name" required>
+                        <i class="fas fa-user form-icon"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <input type="email" id="signup-email" name="email" required>
+                        <i class="fas fa-envelope form-icon"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-mobile">Mobile Number</label>
+                        <input type="tel" id="signup-mobile" name="mobile" required>
+                        <i class="fas fa-phone form-icon"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <div class="password-input">
+                            <input type="password" id="signup-password" name="password" required>
+                            <button type="button" class="password-toggle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <i class="fas fa-lock form-icon"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" name="confirm-password" required>
+                        <i class="fas fa-lock form-icon"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-aadhaar">Aadhaar Number (Optional)</label>
+                        <input type="text" id="signup-aadhaar" name="aadhaar" placeholder="XXXX-XXXX-XXXX">
+                        <i class="fas fa-id-card form-icon"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-upi">UPI ID (Optional)</label>
+                        <input type="text" id="signup-upi" name="upi" placeholder="yourname@upi">
+                        <i class="fas fa-mobile-alt form-icon"></i>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-coral btn-full">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="#" data-form="login">Sign in here</a></p>
+                    </div>
+                </form>
+
+                <!-- OTP Verification Form -->
+                <form class="auth-form hidden" id="otp-form">
+                    <div class="form-group">
+                        <label for="otp-code">Verification Code</label>
+                        <input type="text" id="otp-code" name="otp" maxlength="6" placeholder="Enter 6-digit code" required>
+                        <i class="fas fa-key form-icon"></i>
+                    </div>
+
+                    <p class="otp-info">We've sent a verification code to your mobile number</p>
+
+                    <button type="submit" class="btn btn-coral btn-full">
+                        <i class="fas fa-check"></i>
+                        Verify Code
+                    </button>
+
+                    <div class="auth-footer">
+                        <p>Didn't receive code? <a href="#" class="resend-otp">Resend code</a></p>
+                        <p><a href="#" data-form="login">Back to sign in</a></p>
+                    </div>
+                </form>
+
+                <!-- Forgot Password Form -->
+                <form class="auth-form hidden" id="forgot-form">
+                    <div class="form-group">
+                        <label for="forgot-email">Email Address</label>
+                        <input type="email" id="forgot-email" name="email" required>
+                        <i class="fas fa-envelope form-icon"></i>
+                    </div>
+
+                    <button type="submit" class="btn btn-coral btn-full">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Reset Link
+                    </button>
+
+                    <div class="auth-footer">
+                        <p>Remember your password? <a href="#" data-form="login">Sign in here</a></p>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div class="auth-success hidden" id="success-message">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Success!</h3>
+                    <p id="success-text">Your account has been created successfully!</p>
+                    <button class="btn btn-coral btn-full" onclick="window.location.href='index.html'">
+                        <i class="fas fa-home"></i>
+                        Go to Dashboard
+                    </button>
+                </div>
+            </div>
+
+            <!-- Auth Info Sidebar -->
+            <div class="auth-info">
+                <div class="auth-benefits">
+                    <h3>Why Join NeighbourNet?</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-handshake"></i>
+                            <span>Borrow items from trusted neighbours</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>Earn money by renting your items</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Verified users and secure transactions</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Find everything in your neighbourhood</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Save time and build community connections</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <a href="safety.html" class="hamburger-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Safety Guidelines</span>
+                </a>
+                <a href="trust.html" class="hamburger-item">
+                    <i class="fas fa-user-check"></i>
+                    <span>Trust & Verification</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Services - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/category-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Category Header -->
+    <section class="category-header">
+        <div class="container">
+            <h1 class="category-title">Hire Local Services</h1>
+            <p class="category-subtitle">Find trusted local service providers in your neighbourhood</p>
+        </div>
+    </section>
+
+    <!-- Category Content -->
+    <section class="category-section">
+        <div class="container">
+            <div class="category-layout">
+                <!-- Sidebar Filters -->
+                <aside class="category-sidebar">
+                    <div class="filter-section">
+                        <h3 class="filter-title">
+                            <i class="fas fa-filter"></i>
+                            Filters
+                        </h3>
+
+                        <!-- Service Category Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Service Type</label>
+                            <select class="filter-select">
+                                <option>All Services</option>
+                                <option>Home Services</option>
+                                <option>Personal Services</option>
+                                <option>Professional Services</option>
+                                <option>Tech Services</option>
+                                <option>Creative Services</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Location Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Location</label>
+                            <select class="filter-select">
+                                <option>Within 1 km</option>
+                                <option>Within 5 km</option>
+                                <option>Within 10 km</option>
+                                <option>Same City</option>
+                            </select>
+                        </div>
+
+                        <!-- Availability Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Availability</label>
+                            <div class="availability-options">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Available Today
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Available This Week
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="filter-group">
+                            <label class="filter-label">Max Service Fee</label>
+                            <div class="price-range">
+                                <input type="range" min="0" max="1000" value="200" class="price-slider">
+                                <div class="price-display">₹0 - ₹200</div>
+                            </div>
+                        </div>
+
+                        <!-- Rating Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label">Minimum Rating</label>
+                            <div class="rating-filter">
+                                <div class="star-rating-input">
+                                    <i class="fas fa-star" data-rating="1"></i>
+                                    <i class="fas fa-star" data-rating="2"></i>
+                                    <i class="fas fa-star" data-rating="3"></i>
+                                    <i class="fas fa-star" data-rating="4"></i>
+                                    <i class="fas fa-star" data-rating="5"></i>
+                                </div>
+                                <span class="rating-text">3+ stars</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-coral filter-apply">Apply Filters</button>
+                        <button class="btn btn-outline filter-clear">Clear All</button>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="category-main">
+                    <!-- Results Header -->
+                    <div class="results-header">
+                        <p class="results-count">Showing 15 local service providers</p>
+                        <div class="sort-options">
+                            <label>Sort by:</label>
+                            <select class="sort-select">
+                                <option>Relevance</option>
+                                <option>Distance</option>
+                                <option>Price (Low to High)</option>
+                                <option>Price (High to Low)</option>
+                                <option>Rating</option>
+                                <option>Experience</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Services Grid -->
+                    <div class="items-grid">
+                        <!-- Service Card 1 -->
+                        <div class="item-card">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/300x200/096C6C/ffffff?text=Plumbing" alt="Plumbing Service">
+                                <div class="item-status available">Available</div>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="item-info">
+                                <h3 class="item-title">Professional Plumbing Service</h3>
+                                <div class="item-details">
+                                    <span class="item-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        1.2 km away
+                                    </span>
+                                    <div class="item-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <span>(4.8)</span>
+                                    </div>
+                                </div>
+                                <p class="item-description">Licensed plumber with 10+ years experience. Available for repairs, installations, and maintenance...</p>
+                                <div class="item-owner">
+                                    <div class="owner-avatar">
+                                        <img src="https://via.placeholder.com/40x40/FF6F61/ffffff?text=MS" alt="Manoj Singh">
+                                    </div>
+                                    <span class="owner-name">Manoj Singh</span>
+                                    <div class="verified-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="item-footer">
+                                    <div class="item-price">₹300/service</div>
+                                    <div class="item-actions">
+                                        <button class="btn btn-coral btn-small" onclick="window.location.href='service-detail.html'">View Details</button>
+                                        <button class="btn btn-outline btn-small chat-btn">Chat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 2 -->
+                        <div class="item-card">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/300x200/096C6C/ffffff?text=Tutoring" alt="Tutoring Service">
+                                <div class="item-status available">Available</div>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="item-info">
+                                <h3 class="item-title">Math & Science Tutoring</h3>
+                                <div class="item-details">
+                                    <span class="item-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        2.1 km away
+                                    </span>
+                                    <div class="item-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span>(5.0)</span>
+                                    </div>
+                                </div>
+                                <p class="item-description">Experienced tutor for students from class 6-12. Specialized in Math, Physics, and Chemistry...</p>
+                                <div class="item-owner">
+                                    <div class="owner-avatar">
+                                        <img src="https://via.placeholder.com/40x40/FF6F61/ffffff?text=AD" alt="Anita Desai">
+                                    </div>
+                                    <span class="owner-name">Anita Desai</span>
+                                    <div class="verified-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="item-footer">
+                                    <div class="item-price">₹200/hour</div>
+                                    <div class="item-actions">
+                                        <button class="btn btn-coral btn-small" onclick="window.location.href='service-detail.html'">View Details</button>
+                                        <button class="btn btn-outline btn-small chat-btn">Chat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 3 -->
+                        <div class="item-card">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/300x200/096C6C/ffffff?text=Hair+Styling" alt="Hair Styling">
+                                <div class="item-status available">Available</div>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="item-info">
+                                <h3 class="item-title">Professional Hair Styling</h3>
+                                <div class="item-details">
+                                    <span class="item-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        0.8 km away
+                                    </span>
+                                    <div class="item-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <span>(4.7)</span>
+                                    </div>
+                                </div>
+                                <p class="item-description">Expert hair stylist with 8 years experience. Specializes in cuts, coloring, and styling...</p>
+                                <div class="item-owner">
+                                    <div class="owner-avatar">
+                                        <img src="https://via.placeholder.com/40x40/FF6F61/ffffff?text=RG" alt="Riya Gupta">
+                                    </div>
+                                    <span class="owner-name">Riya Gupta</span>
+                                    <div class="verified-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="item-footer">
+                                    <div class="item-price">₹150/service</div>
+                                    <div class="item-actions">
+                                        <button class="btn btn-coral btn-small" onclick="window.location.href='service-detail.html'">View Details</button>
+                                        <button class="btn btn-outline btn-small chat-btn">Chat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 4 -->
+                        <div class="item-card">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/300x200/096C6C/ffffff?text=Photography" alt="Photography">
+                                <div class="item-status available">Available</div>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="item-info">
+                                <h3 class="item-title">Event Photography</h3>
+                                <div class="item-details">
+                                    <span class="item-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        3.5 km away
+                                    </span>
+                                    <div class="item-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span>(4.9)</span>
+                                    </div>
+                                </div>
+                                <p class="item-description">Professional photographer for weddings, birthdays, corporate events, and portraits...</p>
+                                <div class="item-owner">
+                                    <div class="owner-avatar">
+                                        <img src="https://via.placeholder.com/40x40/FF6F61/ffffff?text=KK" alt="Karan Kapoor">
+                                    </div>
+                                    <span class="owner-name">Karan Kapoor</span>
+                                    <div class="verified-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="item-footer">
+                                    <div class="item-price">₹2,000/event</div>
+                                    <div class="item-actions">
+                                        <button class="btn btn-coral btn-small" onclick="window.location.href='service-detail.html'">View Details</button>
+                                        <button class="btn btn-outline btn-small chat-btn">Chat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 5 -->
+                        <div class="item-card">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/300x200/096C6C/ffffff?text=Home+Cleaning" alt="Home Cleaning">
+                                <div class="item-status available">Available</div>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="item-info">
+                                <h3 class="item-title">Deep Home Cleaning</h3>
+                                <div class="item-details">
+                                    <span class="item-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        1.7 km away
+                                    </span>
+                                    <div class="item-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span>(4.3)</span>
+                                    </div>
+                                </div>
+                                <p class="item-description">Professional home cleaning service including deep cleaning, sanitization, and organization...</p>
+                                <div class="item-owner">
+                                    <div class="owner-avatar">
+                                        <img src="https://via.placeholder.com/40x40/FF6F61/ffffff?text=LS" alt="Lata Sharma">
+                                    </div>
+                                    <span class="owner-name">Lata Sharma</span>
+                                    <div class="verified-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="item-footer">
+                                    <div class="item-price">₹800/service</div>
+                                    <div class="item-actions">
+                                        <button class="btn btn-coral btn-small" onclick="window.location.href='service-detail.html'">View Details</button>
+                                        <button class="btn btn-outline btn-small chat-btn">Chat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 6 -->
+                        <div class="item-card">
+                            <div class="item-image">
+                                <img src="https://via.placeholder.com/300x200/096C6C/ffffff?text=Computer+Repair" alt="Computer Repair">
+                                <div class="item-status available">Available</div>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="item-info">
+                                <h3 class="item-title">Computer & Laptop Repair</h3>
+                                <div class="item-details">
+                                    <span class="item-location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        2.9 km away
+                                    </span>
+                                    <div class="item-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <span>(4.6)</span>
+                                    </div>
+                                </div>
+                                <p class="item-description">Expert computer repair, virus removal, software installation, and hardware upgrades...</p>
+                                <div class="item-owner">
+                                    <div class="owner-avatar">
+                                        <img src="https://via.placeholder.com/40x40/FF6F61/ffffff?text=RV" alt="Ravi Verma">
+                                    </div>
+                                    <span class="owner-name">Ravi Verma</span>
+                                    <div class="verified-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="item-footer">
+                                    <div class="item-price">₹250/service</div>
+                                    <div class="item-actions">
+                                        <button class="btn btn-coral btn-small" onclick="window.location.href='service-detail.html'">View Details</button>
+                                        <button class="btn btn-outline btn-small chat-btn">Chat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Load More -->
+                    <div class="load-more-container">
+                        <button class="btn btn-outline btn-large">Load More Services</button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="services.html">Browse Services</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

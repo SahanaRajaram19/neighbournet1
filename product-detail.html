@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Power Drill - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/category-styles.css">
+    <link rel="stylesheet" href="css/detail-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Header -->
+    <section class="product-header">
+        <div class="container">
+            <div class="product-header-content">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="separator">/</span>
+                    <a href="borrow.html">Borrow</a>
+                    <span class="separator">/</span>
+                    <span class="current">Professional Power Drill</span>
+                </div>
+                <div class="product-title-section">
+                    <h1 class="product-title">Professional Power Drill</h1>
+                    <div class="product-meta">
+                        <span class="product-id">Item #12345</span>
+                        <div class="verified-badge">
+                            <i class="fas fa-check-circle"></i>
+                            Verified Owner
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Content -->
+    <section class="product-content">
+        <div class="container">
+            <div class="product-layout">
+                <!-- Image Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="https://via.placeholder.com/500x400/096C6C/ffffff?text=Power+Drill+Main" alt="Professional Power Drill" id="mainImage">
+                        <button class="gallery-nav prev" id="prevImage">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="gallery-nav next" id="nextImage">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="thumbnail-gallery">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Drill+1" alt="Drill view 1" class="thumbnail active" data-image="https://via.placeholder.com/500x400/096C6C/ffffff?text=Power+Drill+Main">
+                        <img src="https://via.placeholder.com/100x80/FF6F61/ffffff?text=Drill+2" alt="Drill view 2" class="thumbnail" data-image="https://via.placeholder.com/500x400/FF6F61/ffffff?text=Power+Drill+Side">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Drill+3" alt="Drill view 3" class="thumbnail" data-image="https://via.placeholder.com/500x400/096C6C/ffffff?text=Power+Drill+Detail">
+                        <img src="https://via.placeholder.com/100x80/FF6F61/ffffff?text=Drill+4" alt="Drill view 4" class="thumbnail" data-image="https://via.placeholder.com/500x400/FF6F61/ffffff?text=Power+Drill+Box">
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="product-details">
+                    <div class="product-info-card">
+                        <div class="product-status">
+                            <span class="status-badge available">Available</span>
+                            <span class="last-updated">Updated 2 hours ago</span>
+                        </div>
+
+                        <div class="product-price-section">
+                            <div class="price-display">
+                                <span class="price">₹50</span>
+                                <span class="price-period">/ day</span>
+                            </div>
+                            <div class="rating-display">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-text">4.7 (23 reviews)</span>
+                            </div>
+                        </div>
+
+                        <!-- Key Guidelines Box -->
+                        <div class="guidelines-box">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Important Guidelines</h4>
+                            <ul>
+                                <li>Return in same condition as received</li>
+                                <li>Maximum rental period: 7 days</li>
+                                <li>Security deposit: ₹500 (refundable)</li>
+                                <li>Pickup/drop-off at owner's location</li>
+                            </ul>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button class="btn btn-coral btn-full">
+                                <i class="fas fa-comments"></i>
+                                Chat with Owner
+                            </button>
+                            <button class="btn btn-peacock btn-full">
+                                <i class="fas fa-handshake"></i>
+                                Request to Borrow
+                            </button>
+                        </div>
+
+                        <!-- Secondary Actions -->
+                        <div class="secondary-actions">
+                            <button class="btn btn-outline btn-half">
+                                <i class="far fa-heart"></i>
+                                Add to Wishlist
+                            </button>
+                            <button class="btn btn-outline btn-half">
+                                <i class="fas fa-share-alt"></i>
+                                Share
+                            </button>
+                        </div>
+
+                        <!-- Owner Info -->
+                        <div class="owner-info">
+                            <div class="owner-header">
+                                <h4>Listed by</h4>
+                                <a href="#" class="view-profile">View Profile <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="owner-details">
+                                <div class="owner-avatar">
+                                    <img src="https://via.placeholder.com/60x60/FF6F61/ffffff?text=JD" alt="John Doe">
+                                </div>
+                                <div class="owner-text">
+                                    <h5>John Doe</h5>
+                                    <p>Verified Member since 2022</p>
+                                    <div class="owner-stats">
+                                        <span><i class="fas fa-star"></i> 4.8 rating</span>
+                                        <span><i class="fas fa-handshake"></i> 47 completed rentals</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Description and Tabs -->
+            <div class="product-description-section">
+                <div class="description-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="description">Description</button>
+                        <button class="tab-btn" data-tab="reviews">Reviews & Ratings</button>
+                        <button class="tab-btn" data-tab="proofs">Transaction Proofs</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <!-- Description Tab -->
+                        <div class="tab-pane active" id="description">
+                            <div class="description-content">
+                                <h3>About This Item</h3>
+                                <p>High-quality cordless drill perfect for home improvement projects, woodworking, and DIY tasks. This professional-grade power drill features:</p>
+                                
+                                <ul class="feature-list">
+                                    <li><strong>Powerful Motor:</strong> 18V lithium-ion battery with brushless motor</li>
+                                    <li><strong>Variable Speed:</strong> 0-1,800 RPM with 21 torque settings</li>
+                                    <li><strong>Keyless Chuck:</strong> 13mm keyless chuck for quick bit changes</li>
+                                    <li><strong>LED Light:</strong> Built-in LED work light for better visibility</li>
+                                    <li><strong>Battery Life:</strong> Up to 2 hours of continuous use per charge</li>
+                                </ul>
+
+                                <h4>What's Included</h4>
+                                <ul class="included-items">
+                                    <li>Power drill with battery</li>
+                                    <li>Charger and charging cable</li>
+                                    <li>Drill bit set (10 pieces)</li>
+                                    <li>Screwdriver bits set</li>
+                                    <li>Carrying case</li>
+                                    <li>User manual</li>
+                                </ul>
+
+                                <h4>Rental Terms</h4>
+                                <div class="rental-terms">
+                                    <div class="term-item">
+                                        <strong>Duration:</strong> Minimum 1 day, maximum 7 days
+                                    </div>
+                                    <div class="term-item">
+                                        <strong>Pickup:</strong> Must be picked up from owner's location in person
+                                    </div>
+                                    <div class="term-item">
+                                        <strong>Deposit:</strong> ₹500 refundable security deposit required
+                                    </div>
+                                    <div class="term-item">
+                                        <strong>Care:</strong> Clean and return in original condition
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reviews Tab -->
+                        <div class="tab-pane" id="reviews">
+                            <div class="reviews-content">
+                                <div class="reviews-header">
+                                    <h3>Customer Reviews</h3>
+                                    <div class="overall-rating">
+                                        <div class="rating-big">
+                                            <span class="rating-number">4.7</span>
+                                            <div class="stars-big">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <span class="review-count">Based on 23 reviews</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="reviews-list">
+                                    <div class="review-item">
+                                        <div class="review-header">
+                                            <div class="reviewer-info">
+                                                <div class="reviewer-avatar">
+                                                    <img src="https://via.placeholder.com/40x40/096C6C/ffffff?text=SM" alt="Sarah M.">
+                                                </div>
+                                                <div class="reviewer-details">
+                                                    <h5>Sarah Miller</h5>
+                                                    <div class="review-date">2 weeks ago</div>
+                                                </div>
+                                            </div>
+                                            <div class="review-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p class="review-text">Excellent drill! Worked perfectly for my home renovation project. John was very helpful and explained everything clearly.</p>
+                                    </div>
+
+                                    <div class="review-item">
+                                        <div class="review-header">
+                                            <div class="reviewer-info">
+                                                <div class="reviewer-avatar">
+                                                    <img src="https://via.placeholder.com/40x40/FF6F61/ffffff?text=MK" alt="Mike K.">
+                                                </div>
+                                                <div class="reviewer-details">
+                                                    <h5>Mike Kumar</h5>
+                                                    <div class="review-date">1 month ago</div>
+                                                </div>
+                                            </div>
+                                            <div class="review-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <p class="review-text">Good quality tool. Battery life was as advertised. Pickup and return process was smooth.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Proofs Tab -->
+                        <div class="tab-pane" id="proofs">
+                            <div class="proofs-content">
+                                <h3>Transaction Proofs</h3>
+                                <p>Photos and documents from completed transactions help build trust in the community.</p>
+                                
+                                <div class="proofs-gallery">
+                                    <div class="proof-item">
+                                        <img src="https://via.placeholder.com/200x150/096C6C/ffffff?text=Before+Use" alt="Before use">
+                                        <div class="proof-info">
+                                            <span class="proof-type">Before Use</span>
+                                            <span class="proof-date">Dec 15, 2024</span>
+                                        </div>
+                                    </div>
+                                    <div class="proof-item">
+                                        <img src="https://via.placeholder.com/200x150/FF6F61/ffffff?text=After+Return" alt="After return">
+                                        <div class="proof-info">
+                                            <span class="proof-type">After Return</span>
+                                            <span class="proof-date">Dec 18, 2024</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Items -->
+    <section class="related-items">
+        <div class="container">
+            <h2 class="section-title">Similar Items You Might Like</h2>
+            <div class="items-grid">
+                <!-- Related Item 1 -->
+                <div class="item-card">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x200/096C6C/ffffff?text=Hammer+Drill" alt="Hammer Drill">
+                        <div class="item-status available">Available</div>
+                    </div>
+                    <div class="item-info">
+                        <h3 class="item-title">Hammer Drill Set</h3>
+                        <div class="item-details">
+                            <span class="item-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                3.2 km away
+                            </span>
+                            <div class="item-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.3)</span>
+                            </div>
+                        </div>
+                        <p class="item-description">Professional hammer drill with masonry bits...</p>
+                        <div class="item-footer">
+                            <div class="item-price">₹75/day</div>
+                            <button class="btn btn-coral btn-small">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Item 2 -->
+                <div class="item-card">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x200/FF6F61/ffffff?text=Circular+Saw" alt="Circular Saw">
+                        <div class="item-status available">Available</div>
+                    </div>
+                    <div class="item-info">
+                        <h3 class="item-title">Circular Saw 7.25"</h3>
+                        <div class="item-details">
+                            <span class="item-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                1.9 km away
+                            </span>
+                            <div class="item-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.8)</span>
+                            </div>
+                        </div>
+                        <p class="item-description">Professional circular saw perfect for woodworking...</p>
+                        <div class="item-footer">
+                            <div class="item-price">₹60/day</div>
+                            <button class="btn btn-coral btn-small">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#">Browse Categories</a>
+                    <a href="#">How It Works</a>
+                    <a href="#">Safety Guidelines</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/detail.js"></script>
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>

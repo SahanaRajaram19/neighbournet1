@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="profile.html" class="breadcrumb-link">Account</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">My Bookings</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bookings Section -->
+    <section class="bookings-section">
+        <div class="container">
+            <div class="bookings-container">
+                <div class="bookings-header">
+                    <h1>My Bookings</h1>
+                    <p>Track and manage all your rental activities</p>
+                </div>
+
+                <!-- Booking Stats -->
+                <div class="booking-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Active</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon completed">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon cancelled">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Cancelled</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon total">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number">16</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Tabs -->
+                <div class="booking-tabs">
+                    <button class="tab-btn active" data-tab="active">Active Bookings</button>
+                    <button class="tab-btn" data-tab="completed">Completed</button>
+                    <button class="tab-btn" data-tab="cancelled">Cancelled</button>
+                </div>
+
+                <!-- Active Bookings -->
+                <div class="tab-content active" data-tab="active">
+                    <div class="bookings-grid">
+                        <!-- Active Booking 1 -->
+                        <div class="booking-card active-booking">
+                            <div class="booking-header">
+                                <div class="booking-type borrow">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>Borrowing</span>
+                                </div>
+                                <div class="booking-status active">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Active</span>
+                                </div>
+                            </div>
+
+                            <div class="booking-details">
+                                <div class="booking-image">
+                                    <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Drill" alt="Power Drill">
+                                </div>
+                                <div class="booking-info">
+                                    <h3>Professional Power Drill</h3>
+                                    <p class="booking-owner">From: Sarah Miller</p>
+                                    <div class="booking-dates">
+                                        <span class="date-range">
+                                            <i class="fas fa-calendar"></i>
+                                            Dec 20 - Dec 22, 2024
+                                        </span>
+                                        <span class="duration">3 days</span>
+                                    </div>
+                                </div>
+                                <div class="booking-actions">
+                                    <div class="booking-amount">₹150</div>
+                                    <button class="btn btn-outline btn-small">View Details</button>
+                                    <button class="btn btn-coral btn-small">Chat</button>
+                                </div>
+                            </div>
+
+                            <div class="booking-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 67%"></div>
+                                </div>
+                                <span class="progress-text">Day 2 of 3</span>
+                            </div>
+                        </div>
+
+                        <!-- Active Booking 2 -->
+                        <div class="booking-card active-booking">
+                            <div class="booking-header">
+                                <div class="booking-type rent">
+                                    <i class="fas fa-home"></i>
+                                    <span>Renting</span>
+                                </div>
+                                <div class="booking-status active">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Active</span>
+                                </div>
+                            </div>
+
+                            <div class="booking-details">
+                                <div class="booking-image">
+                                    <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Bike" alt="Mountain Bike">
+                                </div>
+                                <div class="booking-info">
+                                    <h3>Mountain Bike</h3>
+                                    <p class="booking-owner">To: Mike Roberts</p>
+                                    <div class="booking-dates">
+                                        <span class="date-range">
+                                            <i class="fas fa-calendar"></i>
+                                            Dec 18 - Dec 25, 2024
+                                        </span>
+                                        <span class="duration">1 week</span>
+                                    </div>
+                                </div>
+                                <div class="booking-actions">
+                                    <div class="booking-amount">₹700</div>
+                                    <button class="btn btn-outline btn-small">View Details</button>
+                                    <button class="btn btn-coral btn-small">Chat</button>
+                                </div>
+                            </div>
+
+                            <div class="booking-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 29%"></div>
+                                </div>
+                                <span class="progress-text">Day 2 of 7</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed Bookings -->
+                <div class="tab-content" data-tab="completed">
+                    <div class="bookings-grid">
+                        <!-- Completed Booking 1 -->
+                        <div class="booking-card completed-booking">
+                            <div class="booking-header">
+                                <div class="booking-type service">
+                                    <i class="fas fa-tools"></i>
+                                    <span>Service</span>
+                                </div>
+                                <div class="booking-status completed">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Completed</span>
+                                </div>
+                            </div>
+
+                            <div class="booking-details">
+                                <div class="booking-image">
+                                    <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Cleaning" alt="Home Cleaning">
+                                </div>
+                                <div class="booking-info">
+                                    <h3>Home Cleaning Service</h3>
+                                    <p class="booking-owner">By: Priya Sharma</p>
+                                    <div class="booking-dates">
+                                        <span class="date-range">
+                                            <i class="fas fa-calendar"></i>
+                                            Dec 15, 2024
+                                        </span>
+                                        <span class="duration">1 day</span>
+                                    </div>
+                                </div>
+                                <div class="booking-actions">
+                                    <div class="booking-amount">₹800</div>
+                                    <button class="btn btn-outline btn-small">View Details</button>
+                                    <button class="btn btn-coral btn-small">Rate Service</button>
+                                </div>
+                            </div>
+                            <div class="booking-rating">
+                                <div class="rating-display">
+                                    <div class="stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <span class="rating-score">4.0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cancelled Bookings -->
+                <div class="tab-content" data-tab="cancelled">
+                    <div class="bookings-grid">
+                        <div class="no-bookings">
+                            <i class="fas fa-inbox"></i>
+                            <h3>No Cancelled Bookings</h3>
+                            <p>You haven't cancelled any bookings yet.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-card" onclick="window.location.href='borrow.html'">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Browse More Items</span>
+                        </button>
+                        <button class="action-card" onclick="window.location.href='auth.html'">
+                            <i class="fas fa-list-alt"></i>
+                            <span>List New Item</span>
+                        </button>
+                        <button class="action-card" onclick="window.location.href='support.html'">
+                            <i class="fas fa-headset"></i>
+                            <span>Need Help?</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/bookings.js"></script>
+</body>
+</html>

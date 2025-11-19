@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Your Item - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/listing-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Listing Section -->
+    <section class="listing-section">
+        <div class="container">
+            <div class="listing-container">
+                <!-- Listing Progress -->
+                <div class="listing-progress">
+                    <div class="progress-header">
+                        <h2>List Your Item for Sharing</h2>
+                        <p>Help your neighbours by sharing your items and earn some extra income</p>
+                    </div>
+
+                    <div class="progress-steps">
+                        <div class="step active" data-step="1">
+                            <span class="step-number">1</span>
+                            <span class="step-label">Item Details</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step" data-step="2">
+                            <span class="step-number">2</span>
+                            <span class="step-label">Photos</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step" data-step="3">
+                            <span class="step-number">3</span>
+                            <span class="step-label">Availability</span>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step" data-step="4">
+                            <span class="step-number">4</span>
+                            <span class="step-label">Review</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listing Form -->
+                <form class="listing-form" id="listingForm">
+                    <!-- Step 1: Item Details -->
+                    <div class="form-step active" data-step="1">
+                        <h3>Item Information</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemTitle">Item Title *</label>
+                                <input type="text" id="itemTitle" name="title" required placeholder="e.g., Professional Power Drill">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Category *</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="tools">Tools & Equipment</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="books">Books & Media</option>
+                                    <option value="sports">Sports & Recreation</option>
+                                    <option value="home">Home & Garden</option>
+                                    <option value="vehicles">Vehicles</option>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dailyRate">Daily Rate (₹) *</label>
+                                    <input type="number" id="dailyRate" name="dailyRate" min="1" required placeholder="50">
+                                <label for="dailyRate">Daily Rate (₹) *</label>
+                                <input type="number" id="dailyRate" name="dailyRate" min="1" required placeholder="50">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="securityDeposit">Security Deposit (₹)</label>
+                                <input type="number" id="securityDeposit" name="securityDeposit" min="0" placeholder="500">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="condition">Condition *</label>
+                                <select id="condition" name="condition" required>
+                                    <option value="">Select Condition</option>
+                                    <option value="new">Brand New</option>
+                                    <option value="excellent">Excellent</option>
+                                    <option value="good">Good</option>
+                                    <option value="fair">Fair</option>
+                                    <option value="poor">Poor</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location">Your Location *</label>
+                                <input type="text" id="location" name="location" required placeholder="e.g., Sector 15, Gurgaon">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-coral" onclick="nextStep()">Continue to Photos</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Photos -->
+                    <div class="form-step" data-step="2">
+                        <h3>Add Photos</h3>
+                        <p>Add clear photos of your item (up to 5 photos, each under 100MB)</p>
+
+                        <div class="photo-upload-section">
+                            <div class="upload-grid">
+                                <div class="upload-slot main-upload" onclick="document.getElementById('mainImage').click()">
+                                    <i class="fas fa-camera"></i>
+                                    <p>Main Photo</p>
+                                    <input type="file" id="mainImage" accept="image/*" style="display: none;">
+                                </div>
+                                <div class="upload-slot" onclick="document.getElementById('image2').click()">
+                                    <i class="fas fa-plus"></i>
+                                    <input type="file" id="image2" accept="image/*" style="display: none;">
+                                </div>
+                                <div class="upload-slot" onclick="document.getElementById('image3').click()">
+                                    <i class="fas fa-plus"></i>
+                                    <input type="file" id="image3" accept="image/*" style="display: none;">
+                                </div>
+                                <div class="upload-slot" onclick="document.getElementById('image4').click()">
+                                    <i class="fas fa-plus"></i>
+                                    <input type="file" id="image4" accept="image/*" style="display: none;">
+                                </div>
+                                <div class="upload-slot" onclick="document.getElementById('image5').click()">
+                                    <i class="fas fa-plus"></i>
+                                    <input type="file" id="image5" accept="image/*" style="display: none;">
+                                </div>
+                            </div>
+
+                            <div class="upload-instructions">
+                                <h4>Photo Guidelines:</h4>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Use clear, well-lit photos</li>
+                                    <li><i class="fas fa-check"></i> Show all angles of the item</li>
+                                    <li><i class="fas fa-check"></i> Include close-ups of important features</li>
+                                    <li><i class="fas fa-check"></i> Maximum 100MB per photo</li>
+                                    <li><i class="fas fa-check"></i> JPG, PNG formats only</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="previousStep()">Back</button>
+                            <button type="button" class="btn btn-coral" onclick="nextStep()">Continue to Availability</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Availability -->
+                    <div class="form-step" data-step="3">
+                        <h3>Set Availability</h3>
+                        <p>Let others know when your item is available for borrowing</p>
+
+                        <div class="availability-options">
+                            <div class="availability-type">
+                                <label class="radio-container">
+                                    <input type="radio" name="availabilityType" value="always" checked>
+                                    <span class="radio-mark"></span>
+                                    Available anytime (flexible schedule)
+                                </label>
+                            </div>
+
+                            <div class="availability-type">
+                                <label class="radio-container">
+                                    <input type="radio" name="availabilityType" value="scheduled">
+                                    <span class="radio-mark"></span>
+                                    Set specific availability times
+                                </label>
+                            </div>
+
+                            <div class="availability-type">
+                                <label class="radio-container">
+                                    <input type="radio" name="availabilityType" value="unavailable">
+                                    <span class="radio-mark"></span>
+                                    Currently unavailable (set return date)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="availability-details" id="availabilityDetails">
+                            <div class="form-group">
+                                <label>When will the item be available again?</label>
+                                <input type="date" id="availableFrom" name="availableFrom">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Maximum rental duration (days):</label>
+                                <select id="maxDuration" name="maxDuration">
+                                    <option value="1">1 day</option>
+                                    <option value="3">3 days</option>
+                                    <option value="7" selected>1 week</option>
+                                    <option value="14">2 weeks</option>
+                                    <option value="30">1 month</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Special instructions or requirements:</label>
+                                <textarea id="instructions" name="instructions" rows="3" placeholder="e.g., Must be returned clean, handle with care, etc."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="previousStep()">Back</button>
+                            <button type="button" class="btn btn-coral" onclick="nextStep()">Review Listing</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Review -->
+                    <div class="form-step" data-step="4">
+                        <h3>Review Your Listing</h3>
+
+                        <div class="review-section">
+                            <div class="review-card">
+                                <h4>Item Summary</h4>
+                                <div class="review-item">
+                                    <span class="review-label">Title:</span>
+                                    <span class="review-value" id="reviewTitle">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Category:</span>
+                                    <span class="review-value" id="reviewCategory">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Daily Rate:</span>
+                                    <span class="review-value" id="reviewRate">-</span>
+                                </div>
+                                <div class="review-item">
+                                    <span class="review-label">Condition:</span>
+                                    <span class="review-value" id="reviewCondition">-</span>
+                                </div>
+                            </div>
+
+                            <div class="review-card">
+                                <h4>Photos</h4>
+                                <div class="review-photos" id="reviewPhotos">
+                                    <p>No photos uploaded yet</p>
+                                </div>
+                            </div>
+
+                            <div class="review-card">
+                                <h4>Availability</h4>
+                                <div class="review-availability" id="reviewAvailability">
+                                    <p>Available anytime</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-terms">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="listingTerms" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="#" target="_blank">Listing Terms</a> and <a href="#" target="_blank">Community Guidelines</a>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="previousStep()">Back</button>
+                            <button type="submit" class="btn btn-coral btn-large">
+                                <i class="fas fa-plus-circle"></i>
+                                List My Item
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

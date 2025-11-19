@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Management - Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .admin-header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        .admin-header .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-nav {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-nav .nav-item {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .admin-nav .nav-item:hover,
+        .admin-nav .nav-item.active {
+            background: #096C6C;
+            color: white;
+        }
+
+        .admin-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .admin-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #096C6C;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #096C6C;
+        }
+
+        .btn-admin {
+            background: #096C6C;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-admin:hover {
+            background: #074d4d;
+            transform: translateY(-1px);
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stats-card h3 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stats-card p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        .item-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .item-table th,
+        .item-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .item-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 0.75rem;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-details h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .item-details p {
+            margin: 0.25rem 0 0 0;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-booked {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-unavailable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-excellent, .status-good {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-fair {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-poor {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .category-badge {
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .price-highlight {
+            font-weight: 600;
+            color: #096C6C;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border: none;
+            background: none;
+            color: #666;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-icon:hover {
+            background: #f8f9fa;
+        }
+
+        .btn-icon.edit:hover {
+            color: #ffc107;
+        }
+
+        .btn-icon.delete:hover {
+            color: #dc3545;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #096C6C;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .admin-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .item-table {
+                font-size: 0.9rem;
+            }
+
+            .item-table th,
+            .item-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="container">
+            <div class="header-top">
+                <div>
+                    <h1><i class="fas fa-box"></i> Item Management</h1>
+                    <p>Manage all platform items and listings</p>
+                </div>
+                <div>
+                    <a href="admin.html" style="color: white; text-decoration: none;">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="admin.html" class="nav-item"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="admin-users.html" class="nav-item"><i class="fas fa-users"></i> Users</a>
+            <a href="admin-items.html" class="nav-item active"><i class="fas fa-box"></i> Items</a>
+            <a href="admin-transactions.html" class="nav-item"><i class="fas fa-exchange-alt"></i> Transactions</a>
+            <a href="admin-support.html" class="nav-item"><i class="fas fa-headset"></i> Support</a>
+        </nav>
+    </div>
+
+    <!-- Statistics -->
+    <div class="container">
+        <div class="stats-cards">
+            <div class="stats-card">
+                <h3 id="totalItems">0</h3>
+                <p>Total Items</p>
+            </div>
+            <div class="stats-card">
+                <h3 id="availableItems">0</h3>
+                <p>Available</p>
+            </div>
+            <div class="stats-card">
+                <h3 id="bookedItems">0</h3>
+                <p>Booked</p>
+            </div>
+            <div class="stats-card">
+                <h3 id="unavailableItems">0</h3>
+                <p>Unavailable</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="admin-container">
+            <!-- Message Display -->
+            <div id="messageContainer"></div>
+
+            <!-- Controls -->
+            <div class="admin-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search items..." id="itemSearch">
+                </div>
+                <select class="filter-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="tools">Tools</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="books">Books</option>
+                    <option value="sports">Sports</option>
+                    <option value="other">Other</option>
+                </select>
+                <select class="filter-select" id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="available">Available</option>
+                    <option value="booked">Booked</option>
+                    <option value="unavailable">Unavailable</option>
+                </select>
+                <button class="btn-admin" id="addItemBtn">
+                    <i class="fas fa-plus"></i> Add Item
+                </button>
+            </div>
+
+            <!-- Items Table -->
+            <table class="item-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Owner</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Condition</th>
+                        <th>Date Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsTableBody">
+                    <tr class="loading">
+                        <td colspan="8">Loading items...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add/Edit Item Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Item</h2>
+                <button class="close-modal" onclick="closeItemModal()">&times;</button>
+            </div>
+            <form id="itemForm">
+                <div class="form-group">
+                    <label for="itemTitle">Item Title *</label>
+                    <input type="text" id="itemTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemDescription">Description *</label>
+                    <textarea id="itemDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="itemCategory">Category *</label>
+                    <select id="itemCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="tools">Tools</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="books">Books</option>
+                        <option value="sports">Sports</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="itemPrice">Price (per day) *</label>
+                    <input type="number" id="itemPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemCondition">Condition *</label>
+                    <select id="itemCondition" required>
+                        <option value="excellent">Excellent</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                        <option value="poor">Poor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="itemStatus">Status *</label>
+                    <select id="itemStatus" required>
+                        <option value="available">Available</option>
+                        <option value="booked">Booked</option>
+                        <option value="unavailable">Unavailable</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="itemImage">Image URL</label>
+                    <input type="text" id="itemImage">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeItemModal()">Cancel</button>
+                    <button type="submit" class="btn-admin">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let allItems = [];
+        let currentEditingId = null;
+
+        // Show message
+        function showMessage(message, type = 'success') {
+            const container = document.getElementById('messageContainer');
+            const className = type === 'success' ? 'success-message' : 'error-message';
+            container.innerHTML = `<div class="${className}">${message}</div>`;
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // Fetch items
+        async function fetchItems() {
+            try {
+                const response = await fetch('fetch-items.php');
+                const data = await response.json();
+                
+                if (data.success) {
+                    allItems = data.items;
+                    updateStats();
+                    displayItems(allItems);
+                } else {
+                    showMessage('Error loading items', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Failed to load items', 'error');
+            }
+        }
+
+        // Update statistics
+        function updateStats() {
+            document.getElementById('totalItems').textContent = allItems.length;
+            document.getElementById('availableItems').textContent = allItems.filter(i => i.status === 'available').length;
+            document.getElementById('bookedItems').textContent = allItems.filter(i => i.status === 'booked').length;
+            document.getElementById('unavailableItems').textContent = allItems.filter(i => i.status === 'unavailable').length;
+        }
+
+        // Display items in table
+        function displayItems(items) {
+            const tbody = document.getElementById('itemsTableBody');
+            tbody.innerHTML = '';
+
+            if (items.length === 0) {
+                tbody.innerHTML = '<tr class="loading"><td colspan="8">No items found</td></tr>';
+                return;
+            }
+
+            items.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <div class="item-info">
+                            <img src="${item.image_url || 'https://via.placeholder.com/60x60/096C6C/ffffff?text=Item'}" alt="${item.title}" class="item-image">
+                            <div class="item-details">
+                                <h4>${item.title}</h4>
+                                <p>${item.description.substring(0, 50)}...</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${item.owner_name}</td>
+                    <td><span class="category-badge">${item.category}</span></td>
+                    <td><div class="price-highlight">₹${item.price}</div></td>
+                    <td><span class="status-badge status-${item.status}">${item.status}</span></td>
+                    <td><span class="status-badge status-${item.condition}">${item.condition}</span></td>
+                    <td>${new Date(item.date_added).toLocaleDateString()}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon edit" onclick="editItem(${item.id})" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon delete" onclick="deleteItem(${item.id})" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Filter items
+        function filterItems() {
+            const search = document.getElementById('itemSearch').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            const status = document.getElementById('statusFilter').value;
+
+            const filtered = allItems.filter(item => {
+                const matchSearch = item.title.toLowerCase().includes(search) || item.description.toLowerCase().includes(search);
+                const matchCategory = !category || item.category === category;
+                const matchStatus = !status || item.status === status;
+                return matchSearch && matchCategory && matchStatus;
+            });
+
+            displayItems(filtered);
+        }
+
+        // Open modal
+        function openItemModal(itemId = null) {
+            currentEditingId = itemId;
+            const modal = document.getElementById('itemModal');
+            const form = document.getElementById('itemForm');
+
+            if (itemId) {
+                const item = allItems.find(i => i.id == itemId);
+                document.getElementById('modalTitle').textContent = 'Edit Item';
+                document.getElementById('itemTitle').value = item.title;
+                document.getElementById('itemDescription').value = item.description;
+                document.getElementById('itemCategory').value = item.category;
+                document.getElementById('itemPrice').value = item.price;
+                document.getElementById('itemCondition').value = item.condition;
+                document.getElementById('itemStatus').value = item.status;
+                document.getElementById('itemImage').value = item.image_url || '';
+            } else {
+                document.getElementById('modalTitle').textContent = 'Add New Item';
+                form.reset();
+            }
+
+            modal.classList.add('active');
+        }
+
+        // Close modal
+        function closeItemModal() {
+            document.getElementById('itemModal').classList.remove('active');
+            currentEditingId = null;
+        }
+
+        // Submit form
+        document.getElementById('itemForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = {
+                title: document.getElementById('itemTitle').value,
+                description: document.getElementById('itemDescription').value,
+                category: document.getElementById('itemCategory').value,
+                price: document.getElementById('itemPrice').value,
+                condition: document.getElementById('itemCondition').value,
+                status: document.getElementById('itemStatus').value,
+                image_url: document.getElementById('itemImage').value
+            };
+
+            try {
+                const endpoint = currentEditingId ? 'update-item.php' : 'add-item.php';
+                if (currentEditingId) {
+                    formData.id = currentEditingId;
+                }
+
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    body: JSON.stringify(formData),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showMessage(result.message, 'success');
+                    closeItemModal();
+                    fetchItems();
+                } else {
+                    showMessage(result.message || 'Error occurred', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('An error occurred', 'error');
+            }
+        });
+
+        // Delete item
+        async function deleteItem(itemId) {
+            if (!confirm('Are you sure you want to delete this item?')) return;
+
+            try {
+                const response = await fetch('delete-item.php', {
+                    method: 'POST',
+                    body: JSON.stringify({ id: itemId }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showMessage(result.message, 'success');
+                    fetchItems();
+                } else {
+                    showMessage(result.message || 'Error deleting item', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('An error occurred', 'error');
+            }
+        }
+
+        // Edit item
+        function editItem(itemId) {
+            openItemModal(itemId);
+        }
+
+        // Event listeners
+        document.getElementById('itemSearch').addEventListener('input', filterItems);
+        document.getElementById('categoryFilter').addEventListener('change', filterItems);
+        document.getElementById('statusFilter').addEventListener('change', filterItems);
+        document.getElementById('addItemBtn').addEventListener('click', () => openItemModal());
+
+        // Close modal on outside click
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('itemModal');
+            if (event.target === modal) {
+                closeItemModal();
+            }
+        });
+
+        // Load items on page load
+        document.addEventListener('DOMContentLoaded', fetchItems);
+    </script>
+</body>
+</html>

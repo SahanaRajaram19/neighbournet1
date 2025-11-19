@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Item Details - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="borrow.html" class="breadcrumb-link">Borrowing Items</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Professional Power Drill</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Details Section -->
+    <section class="item-details-section">
+        <div class="container">
+            <div class="item-details-layout">
+                <!-- Image Gallery -->
+                <div class="item-gallery">
+                    <div class="main-image">
+                        <img src="https://via.placeholder.com/600x400/096C6C/ffffff?text=Power+Drill+Main" alt="Power Drill" id="mainImage">
+                        <div class="image-overlay">
+                            <button class="btn btn-coral btn-small gallery-btn" onclick="openImageGallery()">
+                                <i class="fas fa-expand"></i>
+                                View Gallery
+                            </button>
+                        </div>
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Drill+View+1" alt="View 1" class="thumbnail active" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Drill+View+2" alt="View 2" class="thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Drill+View+3" alt="View 3" class="thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Drill+View+4" alt="View 4" class="thumbnail" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+
+                <!-- Item Information -->
+                <div class="item-info">
+                    <div class="item-header">
+                        <h1 class="item-title" id="bookingItemTitle">Professional Power Drill</h1>
+                        <div class="item-status available">
+                            <i class="fas fa-check-circle"></i>
+                            Available for Borrow
+                        </div>
+                    </div>
+
+                    <div class="item-meta">
+                        <div class="item-price">
+                            <span class="price-amount" id="bookingItemPrice">₹50</span>
+                            <span class="price-period">/ day</span>
+                        </div>
+                        <div class="item-location">
+                            <i class="fas fa-tag"></i>
+                            <span id="bookingItemCategory">Category</span>
+                        </div>
+                        <div class="item-condition">
+                            <i class="fas fa-info-circle"></i>
+                            <span id="bookingItemCondition">Good</span>
+                        </div>
+                    </div>
+
+                    <div class="item-description">
+                        <h3>Description</h3>
+                        <p id="bookingItemDescription">No description available</p>
+
+                    <!-- Availability Calendar -->
+                    <div class="availability-section">
+                        <h3>Availability</h3>
+                        <div class="availability-status">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Available from <strong>Today</strong> until <strong>Dec 25, 2024</strong></span>
+                        </div>
+                        <div class="availability-calendar">
+                            <div class="calendar-legend">
+                                <span class="available-date">Available</span>
+                                <span class="booked-date">Booked</span>
+                                <span class="unavailable-date">Unavailable</span>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="calendar-day available" data-date="2024-12-01">1</div>
+                                <div class="calendar-day available" data-date="2024-12-02">2</div>
+                                <div class="calendar-day booked" data-date="2024-12-03">3</div>
+                                <div class="calendar-day available" data-date="2024-12-04">4</div>
+                                <div class="calendar-day available" data-date="2024-12-05">5</div>
+                                <div class="calendar-day available" data-date="2024-12-06">6</div>
+                                <div class="calendar-day available" data-date="2024-12-07">7</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Owner Information -->
+                    <div class="owner-section">
+                        <h3>Item Owner</h3>
+                        <div class="owner-card">
+                            <div class="owner-avatar">
+                                <img src="https://via.placeholder.com/60x60/FF6F61/ffffff?text=JD" alt="John Doe">
+                            </div>
+                            <div class="owner-details">
+                                <h4>John Doe</h4>
+                                <div class="owner-stats">
+                                    <span class="owner-rating">
+                                        <i class="fas fa-star"></i>
+                                        4.9 (156 reviews)
+                                    </span>
+                                    <span class="owner-join-date">
+                                        <i class="fas fa-calendar"></i>
+                                        Member since 2020
+                                    </span>
+                                </div>
+                                <p class="owner-bio">Experienced DIY enthusiast and tool collector. All my tools are well-maintained and regularly serviced. Happy to help neighbors with their projects!</p>
+                                <div class="owner-verification">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified Tool Owner</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="item-actions">
+                        <div class="quantity-selector">
+                            <label>Duration (days):</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                                <input type="number" value="1" min="1" max="3" class="quantity-input" id="borrowDuration">
+                                <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="total-price">
+                            <span>Total: ₹<span id="totalPrice">50</span></span>
+                        </div>
+
+                        <button class="btn btn-coral btn-large" onclick="initiateBooking()">
+                            <i class="fas fa-handshake"></i>
+                            Request to Borrow
+                        </button>
+
+                        <button class="btn btn-outline btn-large chat-btn">
+                            <i class="fas fa-comments"></i>
+                            Chat with Owner
+                        </button>
+                    </div>
+
+                    <!-- Safety & Policies -->
+                    <div class="policies-section">
+                        <h3>Borrowing Policies</h3>
+                        <div class="policy-grid">
+                            <div class="policy-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <h4>Security Deposit</h4>
+                                    <p>₹1,000 refundable deposit required to ensure item return in good condition.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-tools"></i>
+                                <div>
+                                    <h4>Tool Care</h4>
+                                    <p>Clean and return tools in the same condition as received.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Return Policy</h4>
+                                    <p>Return by agreed time or face late fees. Maximum 3-day borrow period.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-ban"></i>
+                                <div>
+                                    <h4>Usage Restrictions</h4>
+                                    <p>Personal use only. No commercial or rental activities permitted.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Book This Item</h3>
+                <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="startDate">Start Date *</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endDate">End Date *</label>
+                        <input type="date" id="endDate" name="endDate" required>
+                    </div>
+
+                    <div class="booking-summary">
+                        <h4>Booking Summary</h4>
+                        <div class="summary-item">
+                            <span>Duration:</span>
+                            <span id="numberOfDays">0 days</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Price per day:</span>
+                            <span id="pricePerDay">₹0</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total Amount:</span>
+                            <span id="totalPrice">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookingNotes">Notes (Optional)</label>
+                        <textarea id="bookingNotes" name="notes" rows="3" placeholder="Any special requests or notes for the owner..."></textarea>
+                    </div>
+
+                    <div class="terms-section">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="termsCheck" required>
+                            <span class="checkmark"></span>
+                            I agree to the booking terms and conditions
+                        </label>
+                    </div>
+
+                    <div class="modal-footer" style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button type="button" class="btn btn-outline" onclick="closeBookingModal()">Cancel</button>
+                        <button type="submit" class="btn btn-coral" id="submitBookingBtn">Confirm Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Gallery Modal -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-content gallery-modal-content">
+            <div class="modal-header">
+                <h3>Tool Gallery</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="gallery-container">
+                    <img src="https://via.placeholder.com/800x600/096C6C/ffffff?text=Power+Drill+Gallery" alt="Gallery Image" class="gallery-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>

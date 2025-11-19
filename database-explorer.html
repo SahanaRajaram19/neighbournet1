@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Explorer - NeighbourNet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+        
+        .tab-btn:hover {
+            border-color: #096C6C;
+            color: #096C6C;
+        }
+        
+        .tab-btn.active {
+            background: #096C6C;
+            color: white;
+            border-color: #096C6C;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-box h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-box p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #096C6C;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e1e5e9;
+            color: #666;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #096C6C;
+        }
+        
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #e9ecef;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-small:hover {
+            background: #096C6C;
+            color: white;
+        }
+        
+        .status-pending {
+            color: #ff9800;
+            font-weight: 600;
+        }
+        
+        .status-completed {
+            color: #4caf50;
+            font-weight: 600;
+        }
+        
+        .status-cancelled {
+            color: #f44336;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            table {
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+            
+            .tabs {
+                gap: 0.5rem;
+            }
+            
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>
+                <i class="fas fa-database"></i>
+                Database Explorer
+            </h1>
+            <p>View all data stored in the NeighbourNet SQLite database</p>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('summary')">
+                <i class="fas fa-chart-pie"></i> Summary
+            </button>
+            <button class="tab-btn" onclick="showTab('users')">
+                <i class="fas fa-users"></i> Users
+            </button>
+            <button class="tab-btn" onclick="showTab('items')">
+                <i class="fas fa-box"></i> Items
+            </button>
+            <button class="tab-btn" onclick="showTab('bookings')">
+                <i class="fas fa-calendar-check"></i> Bookings
+            </button>
+            <button class="tab-btn" onclick="showTab('support')">
+                <i class="fas fa-headset"></i> Support Tickets
+            </button>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Summary Tab -->
+            <div id="summary" class="tab-content active">
+                <h2 style="margin-bottom: 1.5rem; color: #096C6C;">
+                    <i class="fas fa-chart-pie"></i> Database Summary
+                </h2>
+                <div class="stats-grid" id="summary-stats">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading...
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Users Tab -->
+            <div id="users" class="tab-content">
+                <h2 style="margin-bottom: 1rem; color: #096C6C;">
+                    <i class="fas fa-users"></i> All Users
+                </h2>
+                <p style="color: #666; margin-bottom: 1rem;">
+                    Total: <strong id="users-count">0</strong> users
+                </p>
+                <div class="table-responsive" id="users-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading users...
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Items Tab -->
+            <div id="items" class="tab-content">
+                <h2 style="margin-bottom: 1rem; color: #096C6C;">
+                    <i class="fas fa-box"></i> All Items
+                </h2>
+                <p style="color: #666; margin-bottom: 1rem;">
+                    Total: <strong id="items-count">0</strong> items
+                </p>
+                <div class="table-responsive" id="items-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading items...
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bookings Tab -->
+            <div id="bookings" class="tab-content">
+                <h2 style="margin-bottom: 1rem; color: #096C6C;">
+                    <i class="fas fa-calendar-check"></i> All Bookings
+                </h2>
+                <p style="color: #666; margin-bottom: 1rem;">
+                    Total: <strong id="bookings-count">0</strong> bookings
+                </p>
+                <div class="table-responsive" id="bookings-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading bookings...
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support Tickets Tab -->
+            <div id="support" class="tab-content">
+                <h2 style="margin-bottom: 1rem; color: #096C6C;">
+                    <i class="fas fa-headset"></i> Support Tickets
+                </h2>
+                <p style="color: #666; margin-bottom: 1rem;">
+                    Total: <strong id="support-count">0</strong> tickets
+                </p>
+                <div class="table-responsive" id="support-container">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading tickets...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.closest('.tab-btn').classList.add('active');
+            
+            // Load data
+            if (tabName === 'summary') {
+                loadSummary();
+            } else if (tabName === 'users') {
+                loadUsers();
+            } else if (tabName === 'items') {
+                loadItems();
+            } else if (tabName === 'bookings') {
+                loadBookings();
+            } else if (tabName === 'support') {
+                loadSupport();
+            }
+        }
+        
+        function loadSummary() {
+            fetch('database-viewer.php?table=all')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const summary = data.summary;
+                        document.getElementById('summary-stats').innerHTML = `
+                            <div class="stat-box">
+                                <h3>${summary.total_users}</h3>
+                                <p>Total Users</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>${summary.total_items}</h3>
+                                <p>Total Items</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>${summary.total_bookings}</h3>
+                                <p>Total Bookings</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>${summary.total_support_tickets}</h3>
+                                <p>Support Tickets</p>
+                            </div>
+                        `;
+                    }
+                });
+        }
+        
+        function loadUsers() {
+            fetch('database-viewer.php?table=users')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.data.length > 0) {
+                        document.getElementById('users-count').textContent = data.count;
+                        let html = '<table><thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Full Name</th><th>Phone</th><th>Address</th><th>Created</th></tr></thead><tbody>';
+                        
+                        data.data.forEach(user => {
+                            html += `<tr>
+                                <td>#${user.id}</td>
+                                <td><strong>${user.username}</strong></td>
+                                <td>${user.email}</td>
+                                <td>${user.full_name || '-'}</td>
+                                <td>${user.phone || '-'}</td>
+                                <td>${user.address || '-'}</td>
+                                <td>${user.created_at ? user.created_at.substring(0, 10) : '-'}</td>
+                            </tr>`;
+                        });
+                        
+                        html += '</tbody></table>';
+                        document.getElementById('users-container').innerHTML = html;
+                    } else {
+                        document.getElementById('users-container').innerHTML = '<div class="no-data">No users found</div>';
+                    }
+                });
+        }
+        
+        function loadItems() {
+            fetch('database-viewer.php?table=items')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.data.length > 0) {
+                        document.getElementById('items-count').textContent = data.count;
+                        let html = '<table><thead><tr><th>ID</th><th>Title</th><th>Category</th><th>Price</th><th>Status</th><th>Condition</th><th>Owner ID</th><th>Created</th></tr></thead><tbody>';
+                        
+                        data.data.forEach(item => {
+                            let statusBadge = 'badge-info';
+                            if (item.status === 'available') statusBadge = 'badge-success';
+                            if (item.status === 'booked') statusBadge = 'badge-warning';
+                            if (item.status === 'unavailable') statusBadge = 'badge-danger';
+                            
+                            html += `<tr>
+                                <td>#${item.id}</td>
+                                <td><strong>${item.title}</strong></td>
+                                <td>${item.category}</td>
+                                <td>₹${item.price}</td>
+                                <td><span class="badge ${statusBadge}">${item.status}</span></td>
+                                <td>${item.condition}</td>
+                                <td>#${item.owner_id}</td>
+                                <td>${item.created_at ? item.created_at.substring(0, 10) : '-'}</td>
+                            </tr>`;
+                        });
+                        
+                        html += '</tbody></table>';
+                        document.getElementById('items-container').innerHTML = html;
+                    } else {
+                        document.getElementById('items-container').innerHTML = '<div class="no-data">No items found</div>';
+                    }
+                });
+        }
+        
+        function loadBookings() {
+            fetch('database-viewer.php?table=bookings')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.data.length > 0) {
+                        document.getElementById('bookings-count').textContent = data.count;
+                        let html = '<table><thead><tr><th>ID</th><th>User</th><th>Item</th><th>Start Date</th><th>End Date</th><th>Total Price</th><th>Status</th><th>Created</th></tr></thead><tbody>';
+                        
+                        data.data.forEach(booking => {
+                            let statusBadge = 'badge-info';
+                            if (booking.status === 'confirmed') statusBadge = 'badge-success';
+                            if (booking.status === 'pending') statusBadge = 'badge-warning';
+                            if (booking.status === 'cancelled') statusBadge = 'badge-danger';
+                            
+                            html += `<tr>
+                                <td>#${booking.id}</td>
+                                <td>${booking.user_name || 'User #' + booking.user_id}</td>
+                                <td>${booking.item_title || 'Item #' + booking.item_id}</td>
+                                <td>${booking.start_date}</td>
+                                <td>${booking.end_date}</td>
+                                <td>₹${booking.total_price}</td>
+                                <td><span class="badge ${statusBadge}">${booking.status}</span></td>
+                                <td>${booking.created_at ? booking.created_at.substring(0, 10) : '-'}</td>
+                            </tr>`;
+                        });
+                        
+                        html += '</tbody></table>';
+                        document.getElementById('bookings-container').innerHTML = html;
+                    } else {
+                        document.getElementById('bookings-container').innerHTML = '<div class="no-data">No bookings found</div>';
+                    }
+                });
+        }
+        
+        function loadSupport() {
+            fetch('database-viewer.php?table=support_tickets')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.data.length > 0) {
+                        document.getElementById('support-count').textContent = data.count;
+                        let html = '<table><thead><tr><th>ID</th><th>User</th><th>Subject</th><th>Priority</th><th>Status</th><th>Created</th></tr></thead><tbody>';
+                        
+                        data.data.forEach(ticket => {
+                            let priorityBadge = 'badge-info';
+                            if (ticket.priority === 'high') priorityBadge = 'badge-danger';
+                            if (ticket.priority === 'medium') priorityBadge = 'badge-warning';
+                            if (ticket.priority === 'low') priorityBadge = 'badge-success';
+                            
+                            let statusBadge = 'badge-info';
+                            if (ticket.status === 'open') statusBadge = 'badge-danger';
+                            if (ticket.status === 'in_progress') statusBadge = 'badge-warning';
+                            if (ticket.status === 'closed') statusBadge = 'badge-success';
+                            
+                            html += `<tr>
+                                <td>#${ticket.id}</td>
+                                <td>${ticket.username || 'User #' + ticket.user_id}</td>
+                                <td><strong>${ticket.subject}</strong></td>
+                                <td><span class="badge ${priorityBadge}">${ticket.priority}</span></td>
+                                <td><span class="badge ${statusBadge}">${ticket.status}</span></td>
+                                <td>${ticket.created_at ? ticket.created_at.substring(0, 10) : '-'}</td>
+                            </tr>`;
+                        });
+                        
+                        html += '</tbody></table>';
+                        document.getElementById('support-container').innerHTML = html;
+                    } else {
+                        document.getElementById('support-container').innerHTML = '<div class="no-data">No support tickets found</div>';
+                    }
+                });
+        }
+        
+        // Load summary on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSummary();
+        });
+    </script>
+</body>
+</html>

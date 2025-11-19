@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="services.html" class="breadcrumb-link">Hire Services</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Event Photography</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Details Section -->
+    <section class="item-details-section">
+        <div class="container">
+            <div class="item-details-layout">
+                <!-- Image Gallery -->
+                <div class="item-gallery">
+                    <div class="main-image">
+                        <img src="https://via.placeholder.com/600x400/096C6C/ffffff?text=Photography+Main" alt="Event Photography" id="mainImage">
+                        <div class="image-overlay">
+                            <button class="btn btn-coral btn-small gallery-btn" onclick="openImageGallery()">
+                                <i class="fas fa-expand"></i>
+                                View Portfolio
+                            </button>
+                        </div>
+                    </div>
+                    <div class="thumbnail-images">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Wedding+1" alt="Wedding Photo 1" class="thumbnail active" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Wedding+2" alt="Wedding Photo 2" class="thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Portrait+1" alt="Portrait 1" class="thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/100x80/096C6C/ffffff?text=Event+1" alt="Event 1" class="thumbnail" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+
+                <!-- Service Information -->
+                <div class="item-info">
+                    <div class="item-header">
+                        <h1 class="item-title">Professional Event Photography</h1>
+                        <div class="item-status available">
+                            <i class="fas fa-check-circle"></i>
+                            Available
+                        </div>
+                    </div>
+
+                    <div class="item-meta">
+                        <div class="item-price">
+                            <span class="price-amount">₹2,000</span>
+                            <span class="price-period">/ event</span>
+                        </div>
+                        <div class="item-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(42 reviews)</span>
+                        </div>
+                        <div class="item-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>3.5 km from your location</span>
+                        </div>
+                    </div>
+
+                    <div class="item-description">
+                        <h3>About This Service</h3>
+                        <p>Professional photography service specializing in weddings, corporate events, birthdays, and special occasions. With over 8 years of experience, I capture your precious moments with creativity and professionalism.</p>
+
+                        <div class="service-packages">
+                            <h4>Service Packages:</h4>
+                            <div class="package-grid">
+                                <div class="package-card">
+                                    <h5>Basic Package</h5>
+                                    <p class="package-price">₹2,000</p>
+                                    <ul>
+                                        <li>2 hours coverage</li>
+                                        <li>50 edited photos</li>
+                                        <li>Online gallery</li>
+                                        <li>Digital download</li>
+                                    </ul>
+                                </div>
+                                <div class="package-card featured">
+                                    <h5>Premium Package</h5>
+                                    <p class="package-price">₹3,500</p>
+                                    <ul>
+                                        <li>4 hours coverage</li>
+                                        <li>100 edited photos</li>
+                                        <li>Online gallery</li>
+                                        <li>Digital download</li>
+                                        <li>20 printed photos</li>
+                                    </ul>
+                                </div>
+                                <div class="package-card">
+                                    <h5>Complete Package</h5>
+                                    <p class="package-price">₹5,000</p>
+                                    <ul>
+                                        <li>6 hours coverage</li>
+                                        <li>150 edited photos</li>
+                                        <li>Online gallery</li>
+                                        <li>Digital download</li>
+                                        <li>50 printed photos</li>
+                                        <li>Photo album</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="service-features">
+                            <h4>What I Offer:</h4>
+                            <ul>
+                                <li><i class="fas fa-camera"></i> Professional DSLR equipment</li>
+                                <li><i class="fas fa-edit"></i> Professional photo editing</li>
+                                <li><i class="fas fa-clock"></i> Quick turnaround (3-5 days)</li>
+                                <li><i class="fas fa-mobile-alt"></i> Online gallery for easy sharing</li>
+                                <li><i class="fas fa-download"></i> High-resolution digital files</li>
+                                <li><i class="fas fa-heart"></i> Unlimited revisions until satisfied</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Availability Schedule -->
+                    <div class="availability-section">
+                        <h3>Availability</h3>
+                        <div class="availability-status">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Available <strong>every weekend</strong> and <strong>selected weekdays</strong></span>
+                        </div>
+                        <div class="schedule-list">
+                            <div class="schedule-item">
+                                <span class="day">Monday - Friday:</span>
+                                <span class="time">6:00 PM - 9:00 PM</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="day">Saturday:</span>
+                                <span class="time">9:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="day">Sunday:</span>
+                                <span class="time">10:00 AM - 6:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Provider Information -->
+                    <div class="owner-section">
+                        <h3>Service Provider</h3>
+                        <div class="owner-card">
+                            <div class="owner-avatar">
+                                <img src="https://via.placeholder.com/60x60/FF6F61/ffffff?text=KK" alt="Karan Kapoor">
+                            </div>
+                            <div class="owner-details">
+                                <h4>Karan Kapoor</h4>
+                                <div class="owner-stats">
+                                    <span class="owner-rating">
+                                        <i class="fas fa-star"></i>
+                                        4.9 (156 reviews)
+                                    </span>
+                                    <span class="owner-join-date">
+                                        <i class="fas fa-calendar"></i>
+                                        Professional since 2016
+                                    </span>
+                                </div>
+                                <p class="owner-bio">Award-winning photographer with 8+ years of experience. Specialized in wedding photography, corporate events, and portrait sessions. Featured in local photography magazines.</p>
+                                <div class="owner-verification">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Verified Professional</span>
+                                </div>
+                                <div class="certifications">
+                                    <span class="cert-badge">Certified Photographer</span>
+                                    <span class="cert-badge">Insured Professional</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="item-actions">
+                        <div class="package-selector">
+                            <label>Select Package:</label>
+                            <select class="package-select" id="packageSelect">
+                                <option value="basic">Basic Package - ₹2,000</option>
+                                <option value="premium" selected>Premium Package - ₹3,500</option>
+                                <option value="complete">Complete Package - ₹5,000</option>
+                            </select>
+                        </div>
+
+                        <div class="event-date-selector">
+                            <label>Event Date:</label>
+                            <input type="date" class="date-input" id="eventDate" min="">
+                        </div>
+
+                        <div class="total-price">
+                            <span>Total: ₹<span id="totalPrice">3,500</span></span>
+                        </div>
+
+                        <button class="btn btn-coral btn-large" onclick="initiateBooking()">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Service
+                        </button>
+
+                        <button class="btn btn-outline btn-large chat-btn">
+                            <i class="fas fa-comments"></i>
+                            Chat with Photographer
+                        </button>
+                    </div>
+
+                    <!-- Policies & Terms -->
+                    <div class="policies-section">
+                        <h3>Service Policies</h3>
+                        <div class="policy-grid">
+                            <div class="policy-item">
+                                <i class="fas fa-undo"></i>
+                                <div>
+                                    <h4>Cancellation Policy</h4>
+                                    <p>Free cancellation up to 48 hours before event.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Delivery Time</h4>
+                                    <p>Edited photos delivered within 3-5 business days.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <h4>Equipment Backup</h4>
+                                    <p>Multiple cameras and backup equipment always available.</p>
+                                </div>
+                            </div>
+                            <div class="policy-item">
+                                <i class="fas fa-percentage"></i>
+                                <div>
+                                    <h4>Advance Payment</h4>
+                                    <p>50% advance payment required to confirm booking.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Book Photography Service</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="booking-summary">
+                    <h4>Booking Summary</h4>
+                    <div class="summary-item">
+                        <span>Service:</span>
+                        <span>Professional Event Photography</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Package:</span>
+                        <span id="summaryPackage">Premium Package</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Event Date:</span>
+                        <span id="summaryDate">Select a date</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Duration:</span>
+                        <span id="summaryDuration">4 hours</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Advance Payment (50%):</span>
+                        <span id="summaryAdvance">₹1,750</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total Amount:</span>
+                        <span id="summaryTotal">₹3,500</span>
+                    </div>
+                </div>
+
+                <!-- Event Details Form -->
+                <div class="event-details-form">
+                    <h4>Event Details</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Event Type:</label>
+                            <select class="form-input">
+                                <option>Wedding</option>
+                                <option>Birthday</option>
+                                <option>Corporate Event</option>
+                                <option>Family Portrait</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of Guests:</label>
+                            <input type="number" class="form-input" placeholder="Approximate guests">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Event Location:</label>
+                        <input type="text" class="form-input" placeholder="Venue address">
+                    </div>
+                    <div class="form-group">
+                        <label>Special Requirements:</label>
+                        <textarea class="form-input" rows="3" placeholder="Any special requests or requirements..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="terms-section">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="termsCheck" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#" target="_blank">Service Terms</a> and <a href="#" target="_blank">Cancellation Policy</a>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeBookingModal()">Cancel</button>
+                <button class="btn btn-coral" onclick="confirmBooking()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Gallery Modal -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-content gallery-modal-content">
+            <div class="modal-header">
+                <h3>Photography Portfolio</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="gallery-container">
+                    <img src="https://via.placeholder.com/800x600/096C6C/ffffff?text=Photography+Portfolio" alt="Portfolio Image" class="gallery-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="services.html">Browse Services</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="#">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Management - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Admin Styles */
+        .admin-header {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .admin-nav {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .admin-nav .nav-item {
+            display: inline-block;
+            margin-right: 2rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .admin-nav .nav-item:hover,
+        .admin-nav .nav-item.active {
+            background: #096C6C;
+            color: white;
+        }
+
+        .admin-nav .nav-item i {
+            margin-right: 0.5rem;
+        }
+
+        .admin-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .admin-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #096C6C;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            background: white;
+            font-size: 1rem;
+        }
+
+        .btn-admin {
+            background: #096C6C;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-admin:hover {
+            background: #074d4d;
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .ticket-table th,
+        .ticket-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .ticket-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .ticket-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .ticket-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .ticket-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            color: #096C6C;
+        }
+
+        .ticket-details h4 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .ticket-details p {
+            margin: 0.25rem 0 0 0;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-open {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-in_progress {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-resolved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-closed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .priority-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .priority-normal {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .priority-high {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .priority-urgent {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .type-badge {
+            background: #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            padding: 0.5rem;
+            border: none;
+            background: none;
+            color: #666;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: #f8f9fa;
+        }
+
+        .btn-icon.view:hover {
+            color: #007bff;
+        }
+
+        .btn-icon.edit:hover {
+            color: #ffc107;
+        }
+
+        .btn-icon.resolve:hover {
+            color: #28a745;
+        }
+
+        .btn-icon.close:hover {
+            color: #6f42c1;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e1e5e9;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover,
+        .pagination-btn.active {
+            background: #096C6C;
+            color: white;
+            border-color: #096C6C;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #096C6C, #074d4d);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stats-card h3 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stats-card p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .admin-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .ticket-table {
+                font-size: 0.9rem;
+            }
+
+            .ticket-table th,
+            .ticket-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="margin: 0; font-size: 2rem;"><i class="fas fa-headset"></i> Support Management</h1>
+                    <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Manage customer support tickets and inquiries</p>
+                </div>
+                <div style="text-align: right;">
+                    <a href="admin.html" style="color: white; text-decoration: none; font-size: 0.9rem;">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Navigation -->
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="admin.html" class="nav-item">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
+            </a>
+            <a href="admin-users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                Users
+            </a>
+            <a href="admin-items.html" class="nav-item">
+                <i class="fas fa-box"></i>
+                Items
+            </a>
+            <a href="admin-transactions.html" class="nav-item">
+                <i class="fas fa-exchange-alt"></i>
+                Transactions
+            </a>
+            <a href="admin-support.html" class="nav-item active">
+                <i class="fas fa-headset"></i>
+                Support
+            </a>
+            <a href="admin-reports.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                Reports
+            </a>
+            <a href="admin-settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                Settings
+            </a>
+        </nav>
+    </div>
+
+    <!-- Support Statistics -->
+    <div class="container">
+        <div class="stats-cards">
+            <div class="stats-card">
+                <h3>127</h3>
+                <p>Total Tickets</p>
+            </div>
+            <div class="stats-card">
+                <h3>23</h3>
+                <p>Open Tickets</p>
+            </div>
+            <div class="stats-card">
+                <h3>89</h3>
+                <p>Resolved</p>
+            </div>
+            <div class="stats-card">
+                <h3>5</h3>
+                <p>Urgent Priority</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Management -->
+    <div class="container">
+        <div class="admin-container">
+            <!-- Controls -->
+            <div class="admin-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search tickets by ID, subject, or user..." id="ticketSearch">
+                </div>
+                <select class="filter-select" id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="open">Open</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="closed">Closed</option>
+                </select>
+                <select class="filter-select" id="priorityFilter">
+                    <option value="">All Priorities</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                    <option value="urgent">Urgent</option>
+                </select>
+                <select class="filter-select" id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="contact">Contact</option>
+                    <option value="report">Report</option>
+                </select>
+                <button class="btn-admin">
+                    <i class="fas fa-plus"></i>
+                    New Response
+                </button>
+            </div>
+
+            <!-- Tickets Table -->
+            <div class="table-responsive">
+                <table class="ticket-table">
+                    <thead>
+                        <tr>
+                            <th>Ticket</th>
+                            <th>User</th>
+                            <th>Type</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="ticket-info">
+                                    <div class="ticket-icon">
+                                        <i class="fas fa-question-circle"></i>
+                                    </div>
+                                    <div class="ticket-details">
+                                        <h4>#TKT-20241215001</h4>
+                                        <p>Item not returned on time</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>John Doe</strong>
+                                    <p>ID: #12345</p>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="type-badge">Report</span>
+                            </td>
+                            <td>
+                                <span class="priority-badge priority-urgent">Urgent</span>
+                            </td>
+                            <td>
+                                <span class="status-badge status-open">Open</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 15, 2024</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 15, 2024</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon view" title="View Ticket">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon edit" title="Respond">
+                                        <i class="fas fa-reply"></i>
+                                    </button>
+                                    <button class="btn-icon resolve" title="Mark Resolved">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="ticket-info">
+                                    <div class="ticket-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="ticket-details">
+                                        <h4>#TKT-20241214002</h4>
+                                        <p>How to list my items?</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Sarah Miller</strong>
+                                    <p>ID: #12346</p>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="type-badge">Contact</span>
+                            </td>
+                            <td>
+                                <span class="priority-badge priority-normal">Normal</span>
+                            </td>
+                            <td>
+                                <span class="status-badge status-in_progress">In Progress</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 14, 2024</p>
+                                    <small>1 day ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 15, 2024</p>
+                                    <small>30 min ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon view" title="View Ticket">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon edit" title="Respond">
+                                        <i class="fas fa-reply"></i>
+                                    </button>
+                                    <button class="btn-icon close" title="Close Ticket">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="ticket-info">
+                                    <div class="ticket-icon">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="ticket-details">
+                                        <h4>#TKT-20241213003</h4>
+                                        <p>Payment issue with booking</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <strong>Mike Roberts</strong>
+                                    <p>ID: #12347</p>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="type-badge">Report</span>
+                            </td>
+                            <td>
+                                <span class="priority-badge priority-high">High</span>
+                            </td>
+                            <td>
+                                <span class="status-badge status-resolved">Resolved</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 13, 2024</p>
+                                    <small>2 days ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <p>Dec 14, 2024</p>
+                                    <small>1 day ago</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-icon view" title="View Ticket">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn-icon close" title="Close Ticket">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="pagination-btn">Previous</a>
+                <a href="#" class="pagination-btn active">1</a>
+                <a href="#" class="pagination-btn">2</a>
+                <a href="#" class="pagination-btn">3</a>
+                <a href="#" class="pagination-btn">Next</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Support Management JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('ticketSearch');
+            const statusFilter = document.getElementById('statusFilter');
+            const priorityFilter = document.getElementById('priorityFilter');
+            const typeFilter = document.getElementById('typeFilter');
+
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filterTickets(searchTerm, statusFilter.value, priorityFilter.value, typeFilter.value);
+            });
+
+            // Filter functionality
+            statusFilter.addEventListener('change', function() {
+                filterTickets(searchInput.value.toLowerCase(), this.value, priorityFilter.value, typeFilter.value);
+            });
+
+            priorityFilter.addEventListener('change', function() {
+                filterTickets(searchInput.value.toLowerCase(), statusFilter.value, this.value, typeFilter.value);
+            });
+
+            typeFilter.addEventListener('change', function() {
+                filterTickets(searchInput.value.toLowerCase(), statusFilter.value, priorityFilter.value, this.value);
+            });
+
+            // Action button handlers
+            document.querySelectorAll('.btn-icon.view').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const ticketId = this.closest('tr').querySelector('.ticket-details h4').textContent;
+                    alert('View ticket details: ' + ticketId);
+                    // Implement view ticket details functionality
+                });
+            });
+
+            document.querySelectorAll('.btn-icon.edit').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const ticketId = this.closest('tr').querySelector('.ticket-details h4').textContent;
+                    alert('Respond to ticket: ' + ticketId);
+                    // Implement respond to ticket functionality
+                });
+            });
+
+            document.querySelectorAll('.btn-icon.resolve').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const ticketId = this.closest('tr').querySelector('.ticket-details h4').textContent;
+                    alert('Mark as resolved: ' + ticketId);
+                    // Implement mark as resolved functionality
+                });
+            });
+
+            document.querySelectorAll('.btn-icon.close').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const ticketId = this.closest('tr').querySelector('.ticket-details h4').textContent;
+                    if (confirm(`Are you sure you want to close ticket: ${ticketId}?`)) {
+                        alert('Close ticket: ' + ticketId);
+                        // Implement close ticket functionality
+                    }
+                });
+            });
+        });
+
+        function filterTickets(searchTerm, statusFilter, priorityFilter, typeFilter) {
+            const rows = document.querySelectorAll('.ticket-table tbody tr');
+
+            rows.forEach(row => {
+                const ticketId = row.querySelector('.ticket-details h4').textContent.toLowerCase();
+                const ticketSubject = row.querySelector('.ticket-details p').textContent.toLowerCase();
+                const userName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                const type = row.querySelector('.type-badge').textContent.toLowerCase();
+                const priority = row.querySelector('.priority-badge').textContent.toLowerCase();
+                const status = row.querySelector('.status-badge').textContent.toLowerCase();
+
+                const shouldShow =
+                    (ticketId.includes(searchTerm) || ticketSubject.includes(searchTerm) || userName.includes(searchTerm)) &&
+                    (statusFilter === '' || status.includes(statusFilter)) &&
+                    (priorityFilter === '' || priority.includes(priorityFilter)) &&
+                    (typeFilter === '' || type.includes(typeFilter));
+
+                row.style.display = shouldShow ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

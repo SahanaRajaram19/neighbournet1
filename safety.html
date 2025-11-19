@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Guidelines - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-link">Safety & Trust</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Safety Guidelines</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Safety Section -->
+    <section class="safety-section">
+        <div class="container">
+            <div class="safety-container">
+                <div class="safety-header">
+                    <h1>Safety Guidelines</h1>
+                    <p>Your safety is our top priority. Follow these guidelines to ensure a secure experience on NeighbourNet.</p>
+                </div>
+
+                <div class="safety-content">
+                    <!-- Before Meeting -->
+                    <div class="safety-card">
+                        <div class="safety-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="safety-content-text">
+                            <h3>Before Meeting</h3>
+                            <ul>
+                                <li><strong>Verify Profiles:</strong> Check user ratings, reviews, and verification status</li>
+                                <li><strong>Communicate Clearly:</strong> Use our in-app messaging to discuss details before meeting</li>
+                                <li><strong>Share Minimal Information:</strong> Don't share personal contact details until you're comfortable</li>
+                                <li><strong>Trust Your Instincts:</strong> If something feels off, cancel and report the user</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- During Exchange -->
+                    <div class="safety-card">
+                        <div class="safety-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="safety-content-text">
+                            <h3>During Item Exchange</h3>
+                            <ul>
+                                <li><strong>Meet in Public:</strong> Choose busy, well-lit public locations for exchanges</li>
+                                <li><strong>Bring a Friend:</strong> Consider bringing someone with you for added security</li>
+                                <li><strong>Inspect Items:</strong> Thoroughly check item condition before completing the transaction</li>
+                                <li><strong>Document Everything:</strong> Take photos of items and note any existing damage</li>
+                                <li><strong>Use Secure Payment:</strong> Complete all transactions through our platform</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Online Safety -->
+                    <div class="safety-card">
+                        <div class="safety-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="safety-content-text">
+                            <h3>Online Safety</h3>
+                            <ul>
+                                <li><strong>Protect Your Data:</strong> Never share passwords or financial information</li>
+                                <li><strong>Report Suspicious Activity:</strong> Use the report button for any concerning behavior</li>
+                                <li><strong>Be Cautious with Links:</strong> Don't click on suspicious links shared in messages</li>
+                                <li><strong>Verify Before Paying:</strong> Ensure you're dealing with verified users before making payments</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item Safety -->
+                    <div class="safety-card">
+                        <div class="safety-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="safety-content-text">
+                            <h3>Item Safety Guidelines</h3>
+                            <ul>
+                                <li><strong>Handle with Care:</strong> Treat borrowed items as if they were your own</li>
+                                <li><strong>Report Damage:</strong> Immediately inform the owner of any damage or issues</li>
+                                <li><strong>Return on Time:</strong> Respect agreed-upon return dates and times</li>
+                                <li><strong>Clean Before Return:</strong> Return items in the same condition as received</li>
+                                <li><strong>Insurance Coverage:</strong> High-value items are covered by our insurance policy</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contacts -->
+                    <div class="safety-card emergency-card">
+                        <div class="safety-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="safety-content-text">
+                            <h3>Emergency Contacts</h3>
+                            <div class="emergency-info">
+                                <p><strong>NeighbourNet Support:</strong> +1 (555) 123-4567 (24/7)</p>
+                                <p><strong>Local Police:</strong> 100</p>
+                                <p><strong>Medical Emergency:</strong> 108</p>
+                                <p><strong>Women's Helpline:</strong> 181</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Safety Tips -->
+                    <div class="safety-card tips-card">
+                        <h3><i class="fas fa-lightbulb"></i> Additional Safety Tips</h3>
+                        <div class="tips-grid">
+                            <div class="tip-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Schedule Daytime Meetings</h4>
+                                    <p>Plan exchanges during daylight hours when possible for better visibility and safety.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Share Your Location</h4>
+                                    <p>Let a trusted friend or family member know where and when you're meeting someone.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-camera"></i>
+                                <div>
+                                    <h4>Document Everything</h4>
+                                    <p>Take photos of items, receipts, and keep records of all communications.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <h4>Check Reviews</h4>
+                                    <p>Read user reviews and ratings before agreeing to any transaction.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Safety Issues -->
+                    <div class="safety-card report-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Report Safety Concerns</h3>
+                        <p>If you experience any safety issues or witness concerning behavior, please report it immediately:</p>
+                        <div class="report-options">
+                            <button class="btn btn-coral" onclick="window.location.href='support.html'">
+                                <i class="fas fa-flag"></i>
+                                Report User
+                            </button>
+                            <button class="btn btn-outline" onclick="window.location.href='support.html'">
+                                <i class="fas fa-phone"></i>
+                                Contact Support
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="trust.html">Trust & Verification</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <a href="safety.html" class="hamburger-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Safety Guidelines</span>
+                </a>
+                <a href="trust.html" class="hamburger-item">
+                    <i class="fas fa-user-check"></i>
+                    <span>Trust & Verification</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>

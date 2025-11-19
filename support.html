@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/support-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Support Header -->
+    <section class="support-header">
+        <div class="container">
+            <div class="support-header-content">
+                <h1>How can we help you?</h1>
+                <p>Get the support you need to make the most of NeighbourNet</p>
+                
+                <!-- Quick Search -->
+                <div class="support-search">
+                    <input type="text" placeholder="Search for help..." class="support-search-input">
+                    <button class="support-search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Content -->
+    <section class="support-content">
+        <div class="container">
+            <!-- Support Navigation Tabs -->
+            <div class="support-tabs">
+                <button class="support-tab-btn active" data-tab="faq">FAQ</button>
+                <button class="support-tab-btn" data-tab="contact">Contact Us</button>
+                <button class="support-tab-btn" data-tab="report">Report Issue</button>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="support-section active" id="faq-section">
+                <div class="faq-container">
+                    <div class="faq-categories">
+                        <h3>Browse by Category</h3>
+                        <div class="faq-category-list">
+                            <button class="faq-category active" data-category="getting-started">Getting Started</button>
+                            <button class="faq-category" data-category="borrowing">Borrowing Items</button>
+                            <button class="faq-category" data-category="renting">Renting Items</button>
+                            <button class="faq-category" data-category="services">Services</button>
+                            <button class="faq-category" data-category="account">Account & Profile</button>
+                            <button class="faq-category" data-category="safety">Safety & Trust</button>
+                            <button class="faq-category" data-category="payments">Payments & Billing</button>
+                        </div>
+                    </div>
+
+                    <div class="faq-questions">
+                        <!-- Getting Started -->
+                        <div class="faq-category-content active" data-category="getting-started">
+                            <h2>Getting Started</h2>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>How do I create a NeighbourNet account?</h4>
+                                        <button class="faq-toggle">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Creating an account is simple! Click on the "Sign Up" button, fill in your details including your mobile number for verification, and complete the OTP verification process. You'll need to provide basic information like your name, email, and location to get started.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>What information do I need to provide?</h4>
+                                        <button class="faq-toggle">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>We require your full name, email address, mobile number, and location. For enhanced security and trust, you can also add your Aadhaar number and UPI ID. All information is kept secure and private.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>How does the verification process work?</h4>
+                                        <button class="faq-toggle">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>After signing up, you'll receive an OTP on your registered mobile number. Enter this code to verify your account. For additional security, you can verify your Aadhaar number and link your UPI ID for seamless transactions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Borrowing -->
+                        <div class="faq-category-content" data-category="borrowing">
+                            <h2>Borrowing Items</h2>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>How do I borrow an item from a neighbour?</h4>
+                                        <button class="faq-toggle">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Browse available items in your area, select the item you need, and click "Request to Borrow". The item owner will receive your request and can approve or decline it. Once approved, you can arrange pickup with the owner.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>What are the borrowing fees?</h4>
+                                        <button class="faq-toggle">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Borrowing fees are set by the item owner and vary based on the item type, duration, and owner's preferences. Fees are displayed clearly on each item listing. Some neighbours may offer items for free!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Account -->
+                        <div class="faq-category-content" data-category="account">
+                            <h2>Account & Profile</h2>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>How do I update my profile information?</h4>
+                                        <button class="faq-toggle">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>Go to your profile page, click "Edit Profile", make your changes, and save them. You can update your name, email, location, and other details. Note that Aadhaar verification cannot be changed once completed.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <h4>How do I change my password?</h4>
+                                        <button class="faq-toggle">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </button>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>On your profile page, click "Change Password" in the Security Settings section. Enter your current password, then set and confirm your new password. Your password must be at least 6 characters long.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="support-section" id="contact-section">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Get in Touch</h2>
+                        <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-content">
+                                    <h4>Email Support</h4>
+                                    <p>support@neighbournet.com</p>
+                                    <small>We respond within 24 hours</small>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-content">
+                                    <h4>Phone Support</h4>
+                                    <p>+1 (555) 123-4567</p>
+                                    <small>Mon-Fri, 9AM-6PM IST</small>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-content">
+                                    <h4>Office Address</h4>
+                                    <p>123 Community Street<br>Mumbai, Maharashtra 400001</p>
+                                    <small>Visit us for in-person support</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactName">Full Name *</label>
+                                    <input type="text" id="contactName" name="name" required>
+                                    <i class="fas fa-user form-icon"></i>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email Address *</label>
+                                    <input type="email" id="contactEmail" name="email" required>
+                                    <i class="fas fa-envelope form-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactSubject">Subject *</label>
+                                <select id="contactSubject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="billing">Billing Question</option>
+                                    <option value="safety">Safety Concern</option>
+                                    <option value="feature">Feature Request</option>
+                                    <option value="bug">Bug Report</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <i class="fas fa-chevron-down form-icon"></i>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactMessage">Message *</label>
+                                <textarea id="contactMessage" name="message" rows="6" placeholder="Please describe your question or concern in detail..." required></textarea>
+                                <i class="fas fa-message form-icon"></i>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactPriority">Priority Level</label>
+                                <select id="contactPriority" name="priority">
+                                    <option value="normal">Normal</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                                <i class="fas fa-exclamation form-icon"></i>
+                            </div>
+
+                            <button type="submit" class="btn btn-coral btn-full">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Report Section -->
+            <div class="support-section" id="report-section">
+                <div class="report-container">
+                    <div class="report-info">
+                        <h2>Report an Issue</h2>
+                        <p>Help us maintain a safe and trustworthy community by reporting any issues or violations.</p>
+                        
+                        <div class="report-guidelines">
+                            <h4>Before reporting, please:</h4>
+                            <ul>
+                                <li>Ensure you've tried to resolve the issue directly with the other party</li>
+                                <li>Provide specific details and evidence when possible</li>
+                                <li>Report only legitimate violations of our community guidelines</li>
+                                <li>Allow up to 48 hours for our team to review your report</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="report-form-container">
+                        <form class="report-form" id="reportForm">
+                            <div class="form-group">
+                                <label for="reportType">Issue Type *</label>
+                                <select id="reportType" name="type" required>
+                                    <option value="">Select issue type</option>
+                                    <option value="harassment">Harassment or Abuse</option>
+                                    <option value="scam">Scam or Fraud</option>
+                                    <option value="fake">Fake Listing</option>
+                                    <option value="unsafe">Unsafe Behavior</option>
+                                    <option value="spam">Spam</option>
+                                    <option value="inappropriate">Inappropriate Content</option>
+                                    <option value="technical">Technical Issue</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <i class="fas fa-exclamation-triangle form-icon"></i>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="reportName">Your Name *</label>
+                                    <input type="text" id="reportName" name="name" required>
+                                    <i class="fas fa-user form-icon"></i>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reportEmail">Your Email *</label>
+                                    <input type="email" id="reportEmail" name="email" required>
+                                    <i class="fas fa-envelope form-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reportItem">Item/Transaction ID (if applicable)</label>
+                                <input type="text" id="reportItem" name="itemId" placeholder="e.g., Item #12345 or Transaction ID">
+                                <i class="fas fa-hashtag form-icon"></i>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reportDescription">Describe the Issue *</label>
+                                <textarea id="reportDescription" name="description" rows="5" placeholder="Please provide detailed information about the issue..." required></textarea>
+                                <i class="fas fa-message form-icon"></i>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Attach Evidence (Optional)</label>
+                                <div class="file-upload-area">
+                                    <input type="file" id="reportFiles" name="files" multiple accept="image/*,.pdf,.doc,.docx">
+                                    <div class="upload-content">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Click to upload or drag and drop files here</p>
+                                        <small>Supported formats: JPG, PNG, PDF (Max 5MB per file)</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-options">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="urgent" id="urgentReport">
+                                    <span class="checkmark"></span>
+                                    This is an urgent safety issue requiring immediate attention
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-coral btn-full">
+                                <i class="fas fa-flag"></i>
+                                Submit Report
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/support.js"></script>
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <a href="safety.html" class="hamburger-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Safety Guidelines</span>
+                </a>
+                <a href="trust.html" class="hamburger-item">
+                    <i class="fas fa-user-check"></i>
+                    <span>Trust & Verification</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>

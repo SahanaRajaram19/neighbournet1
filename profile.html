@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/profile-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Account <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">My Profile</a>
+                        <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                        <a href="auth.html" class="dropdown-item">List Your Items</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Help & Support <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                        <a href="support.html" class="dropdown-item">Help & Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="hamburger-menu" onclick="toggleHamburger()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <section class="profile-header">
+        <div class="container">
+            <div class="profile-breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <span class="current">My Profile</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Content -->
+    <section class="profile-content">
+        <div class="container">
+            <div class="profile-layout">
+                <!-- Profile Sidebar -->
+                <aside class="profile-sidebar">
+                    <div class="profile-card">
+                        <div class="profile-avatar-section">
+                            <div class="profile-avatar">
+                                <img src="https://via.placeholder.com/120x120/096C6C/ffffff?text=JD" alt="John Doe" id="profileAvatar">
+                                <button class="avatar-upload" id="avatarUpload">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+                            <h3 id="userName">John Doe</h3>
+                            <p class="profile-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="userEmail">john@example.com</span>
+                            </p>
+                        </div>
+
+                        <div class="profile-status">
+                            <div class="status-item">
+                                <div class="status-badge verified">
+                                    <i class="fas fa-phone"></i>
+                                    <span id="userPhone">Not set</span>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <div class="status-badge">
+                                    <i class="fas fa-home"></i>
+                                    <span id="userAddress">Not set</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <div class="stat-number" id="bookingsCount">0</div>
+                                <div class="stat-label">Bookings</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="itemsCount">0</div>
+                                <div class="stat-label">Items Listed</div>
+                                <div class="stat-number">156</div>
+                                <div class="stat-label">Neighbour Points</div>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button class="btn btn-coral btn-full" onclick="window.location.href='list-item.html'">
+                                <i class="fas fa-plus"></i>
+                                List New Item
+                            </button>
+                            <button class="btn btn-outline btn-full" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Profile Content -->
+                <main class="profile-main">
+                    <!-- Profile Edit Section -->
+                    <div class="profile-edit-card">
+                        <div class="card-header">
+                            <h2>Profile Information</h2>
+                            <button class="btn btn-coral btn-small edit-toggle" id="editToggle">
+                                <i class="fas fa-edit"></i>
+                                Edit Profile
+                            </button>
+                            <button class="btn btn-coral btn-small save-profile hidden" id="saveProfile">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </div>
+
+                        <form class="profile-form" id="editProfileForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="editName">Full Name</label>
+                                    <input type="text" id="editName" name="editName" required>
+                                    <i class="fas fa-user form-icon"></i>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmail">Email Address</label>
+                                    <input type="email" id="editEmail" name="editEmail" disabled style="background: #f8f9fa;">
+                                    <i class="fas fa-envelope form-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="editPhone">Mobile Number</label>
+                                    <input type="tel" id="editPhone" name="editPhone">
+                                    <i class="fas fa-phone form-icon"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editAddress">Full Address</label>
+                                <textarea id="editAddress" name="editAddress" rows="3"></textarea>
+                                <i class="fas fa-home form-icon"></i>
+                            </div>
+
+                            <button type="submit" class="btn btn-coral btn-full">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+
+                        <!-- Change Password Section -->
+                        <div class="password-section">
+                            <h3>Security Settings</h3>
+                            <button class="btn btn-coral btn-small" id="changePasswordBtn">
+                                <i class="fas fa-key"></i>
+                                Change Password
+                            </button>
+                        </div>
+
+                        <!-- Change Password Form (hidden by default) -->
+                        <form class="password-form hidden" id="passwordForm">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="currentPassword" name="currentPassword" required>
+                                    <button type="button" class="password-toggle">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <i class="fas fa-lock form-icon"></i>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <div class="password-input">
+                                    <input type="password" id="newPassword" name="newPassword" required>
+                                    <button type="button" class="password-toggle">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <i class="fas fa-lock form-icon"></i>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                                <i class="fas fa-lock form-icon"></i>
+                            </div>
+
+                            <div class="password-actions">
+                                <button type="submit" class="btn btn-coral btn-small">Update Password</button>
+                                <button type="button" class="btn btn-outline btn-small" id="cancelPassword">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Transaction History -->
+                    <div class="transaction-history-card">
+                        <div class="card-header">
+                            <h2>Recent Transactions</h2>
+                            <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                        </div>
+
+                        <div class="transactions-list">
+                            <!-- Transaction Item 1 -->
+                            <div class="transaction-item">
+                                <div class="transaction-icon borrow">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <h4>Borrowed: Professional Power Drill</h4>
+                                    <p class="transaction-details">
+                                        <span class="transaction-date">
+                                            <i class="fas fa-calendar"></i>
+                                            Dec 15, 2024
+                                        </span>
+                                        <span class="transaction-owner">
+                                            <i class="fas fa-user"></i>
+                                            From: Sarah Miller
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="transaction-status">
+                                    <span class="status-badge completed">Completed</span>
+                                    <a href="#" class="transaction-link">View Details</a>
+                                </div>
+                            </div>
+
+                            <!-- Transaction Item 2 -->
+                            <div class="transaction-item">
+                                <div class="transaction-icon rent">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <h4>Rented: Mountain Bike</h4>
+                                    <p class="transaction-details">
+                                        <span class="transaction-date">
+                                            <i class="fas fa-calendar"></i>
+                                            Dec 10, 2024
+                                        </span>
+                                        <span class="transaction-owner">
+                                            <i class="fas fa-user"></i>
+                                            To: Mike Roberts
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="transaction-status">
+                                    <span class="status-badge completed">Completed</span>
+                                    <a href="#" class="transaction-link">View Details</a>
+                                </div>
+                            </div>
+
+                            <!-- Transaction Item 3 -->
+                            <div class="transaction-item">
+                                <div class="transaction-icon service">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <h4>Service Provided: Home Cleaning</h4>
+                                    <p class="transaction-details">
+                                        <span class="transaction-date">
+                                            <i class="fas fa-calendar"></i>
+                                            Dec 5, 2024
+                                        </span>
+                                        <span class="transaction-owner">
+                                            <i class="fas fa-user"></i>
+                                            For: Anna Lee
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="transaction-status">
+                                    <span class="status-badge completed">Completed</span>
+                                    <a href="#" class="transaction-link">View Details</a>
+                                </div>
+                            </div>
+
+                            <!-- Transaction Item 4 -->
+                            <div class="transaction-item">
+                                <div class="transaction-icon borrow">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <h4>Borrowed: DSLR Camera Kit</h4>
+                                    <p class="transaction-details">
+                                        <span class="transaction-date">
+                                            <i class="fas fa-calendar"></i>
+                                            Nov 28, 2024
+                                        </span>
+                                        <span class="transaction-owner">
+                                            <i class="fas fa-user"></i>
+                                            From: David Thompson
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="transaction-status">
+                                    <span class="status-badge completed">Completed</span>
+                                    <a href="#" class="transaction-link">View Details</a>
+                                </div>
+                            </div>
+
+                            <!-- Transaction Item 5 -->
+                            <div class="transaction-item">
+                                <div class="transaction-icon rent">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <h4>Rented: Projector</h4>
+                                    <p class="transaction-details">
+                                        <span class="transaction-date">
+                                            <i class="fas fa-calendar"></i>
+                                            Nov 20, 2024
+                                        </span>
+                                        <span class="transaction-owner">
+                                            <i class="fas fa-user"></i>
+                                            To: Robert Parker
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="transaction-status">
+                                    <span class="status-badge completed">Completed</span>
+                                    <a href="#" class="transaction-link">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="transactions-footer">
+                            <button class="btn btn-outline btn-large">Load More Transactions</button>
+                        </div>
+                    </div>
+
+                    <!-- Trust & Safety -->
+                    <div class="trust-safety-card">
+                        <h2>Trust & Safety</h2>
+                        <div class="safety-grid">
+                            <div class="safety-item">
+                                <div class="safety-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="safety-content">
+                                    <h4>Verified Identity</h4>
+                                    <p>Your Aadhaar verification helps build trust in the community</p>
+                                </div>
+                            </div>
+                            <div class="safety-item">
+                                <div class="safety-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="safety-content">
+                                    <h4>Community Rating</h4>
+                                    <p>Maintain a good rating by completing transactions responsibly</p>
+                                </div>
+                            </div>
+                            <div class="safety-item">
+                                <div class="safety-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div class="safety-content">
+                                    <h4>Safety Guidelines</h4>
+                                    <p>Follow our community guidelines for safe transactions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+    </footer>
+
+    <!-- Hamburger Menu Modal -->
+    <div class="hamburger-modal" id="hamburgerModal">
+        <div class="hamburger-content">
+            <div class="hamburger-header">
+                <h3>Menu</h3>
+                <button class="hamburger-close" onclick="toggleHamburger()">&times;</button>
+            </div>
+            <div class="hamburger-body">
+                <a href="terms.html" class="hamburger-item">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Terms & Conditions</span>
+                </a>
+                <a href="support.html" class="hamburger-item">
+                    <i class="fas fa-headset"></i>
+                    <span>Help & Support</span>
+                </a>
+                <div class="hamburger-divider"></div>
+                <a href="auth.html" class="hamburger-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

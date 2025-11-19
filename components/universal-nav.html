@@ -1,0 +1,392 @@
+<!-- Universal Navigation Component -->
+<div class="universal-nav">
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <a href="index.html" class="breadcrumb-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-current">Current Page</span>
+        </div>
+    </div>
+
+    <!-- Persistent Sidebar Navigation -->
+    <div class="sidebar-nav" id="sidebarNav">
+        <div class="sidebar-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <h4>Categories</h4>
+                <a href="borrow.html" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 60 60">
+                        <use href="icons.svg#borrow-icon"></use>
+                    </svg>
+                    <span>Browse Items</span>
+                </a>
+                <a href="auth.html" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 60 60">
+                        <use href="icons.svg#list-items-icon"></use>
+                    </svg>
+                    <span>List Items</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>Account</h4>
+                <a href="profile.html" class="sidebar-link">
+                    <i class="fas fa-user"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="auth.html" class="sidebar-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>Support</h4>
+                <a href="support.html" class="sidebar-link">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Support</span>
+                </a>
+                <a href="#contact" class="sidebar-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Us</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section back-to-top">
+                <a href="#top" class="sidebar-link" onclick="scrollToTop()">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>Back to Top</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Universal Navigation Styles */
+.universal-nav {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.breadcrumb-nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 0;
+    pointer-events: auto;
+}
+
+.breadcrumb-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 80px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.breadcrumb-separator {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+}
+
+.breadcrumb-current {
+    color: white;
+    font-weight: 500;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background: rgba(9, 108, 108, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    z-index: 1001;
+    overflow-y: auto;
+}
+
+.sidebar-nav.open {
+    left: 0;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    background: rgba(9, 108, 108, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 12px 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    background: rgba(255, 215, 0, 0.9);
+    transform: translateX(4px);
+}
+
+.sidebar-content {
+    padding: 80px 20px 20px;
+}
+
+.sidebar-section {
+    margin-bottom: 2rem;
+}
+
+.sidebar-section h4 {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 4px;
+}
+
+.sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateX(4px);
+}
+
+.sidebar-link svg {
+    flex-shrink: 0;
+}
+
+/* Backdrop for sidebar */
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.sidebar-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .breadcrumb-container {
+        padding: 0 20px;
+    }
+
+    .sidebar-nav {
+        width: 280px;
+        left: -280px;
+    }
+
+    .universal-nav {
+        top: 70px;
+    }
+}
+
+/* Animation Classes */
+.sidebar-slide-in {
+    animation: sidebarSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-slide-out {
+    animation: sidebarSlideOut 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes sidebarSlideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes sidebarSlideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+</style>
+
+<script>
+// Universal Navigation JavaScript
+function updateBreadcrumbs() {
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
+    const pageNames = {
+        'index': 'Home',
+        'borrow': 'Browse Items',
+        'product-detail': 'Item Details',
+        'profile': 'My Profile',
+        'auth': 'Login / Sign Up',
+        'support': 'Help & Support'
+    };
+
+    const breadcrumbCurrent = document.querySelector('.breadcrumb-current');
+    if (breadcrumbCurrent) {
+        breadcrumbCurrent.textContent = pageNames[currentPage] || 'Current Page';
+    }
+}
+
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebarNav');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+
+    if (sidebar.classList.contains('open')) {
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
+}
+
+function openSidebar() {
+    const sidebar = document.getElementById('sidebarNav');
+    const backdrop = document.querySelector('.sidebar-backdrop') || createSidebarBackdrop();
+
+    sidebar.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Trigger animation
+    setTimeout(() => {
+        sidebar.classList.add('sidebar-slide-in');
+    }, 10);
+}
+
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebarNav');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+
+    sidebar.classList.remove('open');
+    sidebar.classList.add('sidebar-slide-out');
+    document.body.style.overflow = '';
+
+    if (backdrop) {
+        backdrop.classList.remove('show');
+    }
+
+    setTimeout(() => {
+        sidebar.classList.remove('sidebar-slide-in', 'sidebar-slide-out');
+    }, 400);
+}
+
+function createSidebarBackdrop() {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'sidebar-backdrop';
+    backdrop.onclick = closeSidebar;
+
+    backdrop.addEventListener('click', closeSidebar);
+    document.body.appendChild(backdrop);
+
+    // Trigger show animation
+    setTimeout(() => {
+        backdrop.classList.add('show');
+    }, 10);
+
+    return backdrop;
+}
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    closeSidebar();
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateBreadcrumbs();
+
+    // Add keyboard shortcut for sidebar (Ctrl/Cmd + B)
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+            e.preventDefault();
+            toggleSidebar();
+        }
+
+        // ESC to close sidebar
+        if (e.key === 'Escape') {
+            closeSidebar();
+        }
+    });
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(e) {
+        const sidebar = document.getElementById('sidebarNav');
+        const toggle = document.querySelector('.sidebar-toggle');
+
+        if (sidebar.classList.contains('open') &&
+            !sidebar.contains(e.target) &&
+            !toggle.contains(e.target)) {
+            closeSidebar();
+        }
+    });
+
+    console.log('🧭 Universal Navigation Loaded!');
+});
+</script>

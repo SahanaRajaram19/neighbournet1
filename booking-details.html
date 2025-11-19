@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details - NeighbourNet</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                    <img src="logo.svg" alt="NeighbourNet Logo" width="40" height="40" style="filter: brightness(0) invert(1);">
+                    <h2>NeighbourNet</h2>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Categories <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="borrow.html" class="dropdown-item">Borrowing Items</a>
+                        <a href="rent.html" class="dropdown-item">Renting Items</a>
+                        <a href="services.html" class="dropdown-item">Services</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-account">
+                <button class="btn btn-coral" onclick="window.location.href='auth.html'">Login / Sign Up</button>
+                            <a href="profile.html" class="dropdown-item">My Profile</a>
+                            <a href="bookings.html" class="dropdown-item">My Bookings</a>
+                            <a href="borrow.html" class="dropdown-item">Browse Items</a>
+                            <a href="rent.html" class="dropdown-item">Rent Items</a>
+                            <a href="services.html" class="dropdown-item">Hire Services</a>
+                            <a href="auth.html" class="dropdown-item">List Items</a>
+                            <a href="terms.html" class="dropdown-item">Terms & Conditions</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <span class="breadcrumb-separator">></span>
+                <a href="bookings.html" class="breadcrumb-link">My Bookings</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-current">Booking Details</span>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Booking Details Section -->
+    <section class="booking-details-section">
+        <div class="container">
+            <div class="booking-details-container">
+                <!-- Booking Overview -->
+                <div class="booking-overview-card">
+                    <div class="booking-header">
+                        <div class="booking-type borrow">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Borrowing Item</span>
+                        </div>
+                        <div class="booking-status active">
+                            <i class="fas fa-clock"></i>
+                            <span>Active</span>
+                        </div>
+                    </div>
+
+                    <div class="booking-overview">
+                        <div class="item-preview">
+                            <img src="https://via.placeholder.com/120x100/096C6C/ffffff?text=Drill" alt="Power Drill">
+                            <div class="item-info">
+                                <h2>Professional Power Drill</h2>
+                                <p>Borrowed from Sarah Miller</p>
+                            </div>
+                        </div>
+
+                        <div class="booking-summary">
+                            <div class="summary-item">
+                                <span class="label">Booking ID:</span>
+                                <span class="value">#BK-2024-001</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Duration:</span>
+                                <span class="value">Dec 20 - Dec 22, 2024 (3 days)</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Total Amount:</span>
+                                <span class="value">₹150</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="label">Security Deposit:</span>
+                                <span class="value">₹500 (Held)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="booking-timeline-card">
+                    <h3>Booking Timeline</h3>
+                    <div class="timeline">
+                        <div class="timeline-item completed">
+                            <div class="timeline-marker">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Booking Confirmed</h4>
+                                <p>Dec 19, 2024 at 2:30 PM</p>
+                                <small>Your booking request was approved by the owner</small>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item completed">
+                            <div class="timeline-marker">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Item Picked Up</h4>
+                                <p>Dec 20, 2024 at 10:00 AM</p>
+                                <small>Item collected from owner location</small>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item current">
+                            <div class="timeline-marker">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>In Progress</h4>
+                                <p>Currently active</p>
+                                <small>Day 2 of 3 - Return due tomorrow</small>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pending">
+                            <div class="timeline-marker">
+                                <i class="fas fa-undo"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Return Item</h4>
+                                <p>Due: Dec 22, 2024</p>
+                                <small>Return item to owner and complete transaction</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item Details -->
+                <div class="booking-item-card">
+                    <h3>Item Details</h3>
+                    <div class="item-details-grid">
+                        <div class="detail-section">
+                            <h4>Item Information</h4>
+                            <ul>
+                                <li><strong>Category:</strong> Tools & Equipment</li>
+                                <li><strong>Condition:</strong> Excellent</li>
+                                <li><strong>Brand:</strong> Bosch Professional</li>
+                                <li><strong>Model:</strong> GSB 18V-21</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <h4>Rental Terms</h4>
+                            <ul>
+                                <li><strong>Daily Rate:</strong> ₹50</li>
+                                <li><strong>Security Deposit:</strong> ₹500</li>
+                                <li><strong>Usage Instructions:</strong> Handle with care, return clean</li>
+                                <li><strong>Pickup Location:</strong> Sector 15, Gurgaon</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Owner Information -->
+                <div class="booking-owner-card">
+                    <h3>Owner Information</h3>
+                    <div class="owner-info">
+                        <div class="owner-avatar">
+                            <img src="https://via.placeholder.com/60x60/FF6F61/ffffff?text=SM" alt="Sarah Miller">
+                        </div>
+                        <div class="owner-details">
+                            <h4>Sarah Miller</h4>
+                            <div class="owner-stats">
+                                <span class="rating">
+                                    <i class="fas fa-star"></i>
+                                    4.8 (45 reviews)
+                                </span>
+                                <span class="verified">
+                                    <i class="fas fa-check-circle"></i>
+                                    Verified User
+                                </span>
+                            </div>
+                            <p class="owner-bio">Experienced DIY enthusiast with professional-grade tools collection.</p>
+                        </div>
+                        <div class="owner-actions">
+                            <button class="btn btn-coral" onclick="openChatModal()">
+                                <i class="fas fa-comments"></i>
+                                Chat with Owner
+                            </button>
+                            <button class="btn btn-outline">
+                                <i class="fas fa-phone"></i>
+                                Call Owner
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="booking-actions-card">
+                    <h3>Available Actions</h3>
+                    <div class="action-buttons">
+                        <button class="btn btn-outline" onclick="extendBooking()">
+                            <i class="fas fa-calendar-plus"></i>
+                            Extend Booking
+                        </button>
+                        <button class="btn btn-outline" onclick="reportIssue()">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Report Issue
+                        </button>
+                        <button class="btn btn-coral" onclick="returnItem()">
+                            <i class="fas fa-undo"></i>
+                            Return Item
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Return Instructions -->
+                <div class="booking-instructions-card">
+                    <h3>Return Instructions</h3>
+                    <div class="instructions-content">
+                        <div class="instruction-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Return Location</h4>
+                                <p>Sector 15 Community Center, Gurgaon</p>
+                            </div>
+                        </div>
+                        <div class="instruction-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Return Time</h4>
+                                <p>Return by Dec 22, 2024 before 6:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="instruction-item">
+                            <i class="fas fa-tools"></i>
+                            <div>
+                                <h4>Item Condition</h4>
+                                <p>Return in same condition as received. Clean if necessary.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Modal -->
+    <div class="modal" id="chatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chat with Sarah Miller</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="chat-messages">
+                    <div class="message owner-message">
+                        <div class="message-content">Hi! How is the drill working for your project?</div>
+                        <div class="message-time">2:30 PM</div>
+                    </div>
+                    <div class="message user-message">
+                        <div class="message-content">It's working great! Very powerful and easy to use.</div>
+                        <div class="message-time">2:32 PM</div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" class="chat-input" placeholder="Type your message...">
+                    <button class="chat-send">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="borrow.html">Browse Categories</a>
+                    <a href="support.html">Help & Support</a>
+                    <a href="auth.html">Get Started</a>
+                    <a href="safety.html">Safety Guidelines</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: support@neighbournet.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Building stronger communities through sharing and local services.</p>
+                    <p>© 2024 NeighbourNet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/booking-details.js"></script>
+</body>
+</html>
