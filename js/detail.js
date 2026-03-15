@@ -48,10 +48,10 @@ function displayItemDetails(item) {
     document.getElementById('itemStatus').textContent = item.status;
     document.getElementById('itemDescription').textContent = item.description || 'No description available';
     
-    // Update main image
+    // Update main image with realistic placeholder if no image
     const mainImage = document.getElementById('mainImage');
     if (mainImage) {
-        mainImage.src = item.image_url || 'https://via.placeholder.com/500x400?text=' + encodeURIComponent(item.title);
+        mainImage.src = item.image_url || `placeholder-image.php?category=${item.category.toLowerCase()}&w=500&h=400&text=${encodeURIComponent(item.title)}`;
     }
 }
 

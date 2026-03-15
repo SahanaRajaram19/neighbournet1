@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="houseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a9a9a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#074d4d;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer circle background -->
+  <circle cx="50" cy="50" r="48" fill="#f0f8f8" stroke="#096C6C" stroke-width="2"/>
+  
+  <!-- Main house -->
+  <g id="mainHouse">
+    <!-- House base -->
+    <rect x="30" y="35" width="40" height="28" fill="url(#houseGrad)" rx="3"/>
+    
+    <!-- Roof -->
+    <polygon points="30,35 50,15 70,35" fill="#0a6d6d"/>
+    
+    <!-- Door -->
+    <rect x="43" y="48" width="14" height="15" fill="#ffb700" rx="2"/>
+    <circle cx="56" cy="55" r="1.5" fill="#333"/>
+    
+    <!-- Windows -->
+    <rect x="34" y="38" width="8" height="8" fill="#b3e5fc" rx="1"/>
+    <rect x="58" y="38" width="8" height="8" fill="#b3e5fc" rx="1"/>
+    <line x1="38" y1="38" x2="38" y2="46" stroke="#096C6C" stroke-width="0.5"/>
+    <line x1="34" y1="42" x2="42" y2="42" stroke="#096C6C" stroke-width="0.5"/>
+    <line x1="62" y1="38" x2="62" y2="46" stroke="#096C6C" stroke-width="0.5"/>
+    <line x1="58" y1="42" x2="66" y2="42" stroke="#096C6C" stroke-width="0.5"/>
+  </g>
+  
+  <!-- Community circle - 3 people -->
+  <g id="people">
+    <!-- Left person -->
+    <circle cx="18" cy="30" r="5" fill="#28a745" stroke="#096C6C" stroke-width="1"/>
+    <circle cx="18" cy="25" r="2.5" fill="#28a745"/>
+    
+    <!-- Right person -->
+    <circle cx="82" cy="30" r="5" fill="#ffb700" stroke="#096C6C" stroke-width="1"/>
+    <circle cx="82" cy="25" r="2.5" fill="#ffb700"/>
+    
+    <!-- Bottom person -->
+    <circle cx="50" cy="78" r="5" fill="#17a2b8" stroke="#096C6C" stroke-width="1"/>
+    <circle cx="50" cy="73" r="2.5" fill="#17a2b8"/>
+  </g>
+  
+  <!-- Connection lines -->
+  <g stroke="#096C6C" stroke-width="1.2" opacity="0.7">
+    <line x1="23" y1="35" x2="35" y2="42"/>
+    <line x1="77" y1="35" x2="65" y2="42"/>
+    <line x1="47" y1="73" x2="45" y2="63"/>
+    <line x1="53" y1="73" x2="55" y2="63"/>
+  </g>
+  
+  <!-- Center heart -->
+  <text x="50" y="68" font-size="12" fill="#ff6b6b" text-anchor="middle" font-weight="bold">♥</text>
+  
+  <!-- Text -->
+  <text x="50" y="95" font-family="Arial, sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#096C6C">NeighbourNet</text>
+</svg>

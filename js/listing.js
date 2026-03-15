@@ -44,9 +44,10 @@ function displayItems(items) {
     items.forEach(item => {
         const card = document.createElement('div');
         card.className = 'item-card';
+        const imageUrl = item.image_url || `placeholder-image.php?category=${item.category.toLowerCase()}&w=300&h=200&text=${encodeURIComponent(item.title)}`;
         card.innerHTML = `
             <div class="item-image">
-                <img src="${item.image_url || 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(item.title)}" alt="${item.title}">
+                <img src="${imageUrl}" alt="${item.title}" style="width:100%; height:100%; object-fit:cover;">
                 <span class="item-status ${item.status}">${item.status}</span>
             </div>
             <div class="item-content">
